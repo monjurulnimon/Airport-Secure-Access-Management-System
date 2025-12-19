@@ -1,0 +1,193 @@
+/* ===== Global ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background-color: #2f3e46;
+    color: white;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    margin: 0;
+    padding: 20px;
+    background-color: #1b262c;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Sidebar links */
+.sidebar a,
+.menu-label {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sidebar a:hover,
+.menu-label:hover {
+    background-color: #3a4a52;
+}
+
+/* Hide checkbox */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Submenu */
+.submenu {
+    display: none;
+    background-color: #3a4a52;
+}
+
+input[type="checkbox"]:checked + .menu-label + .submenu {
+    display: block;
+}
+
+.submenu a {
+    padding-left: 40px;
+    font-size: 13px;
+}
+
+/* ===== Main Content ===== */
+.main {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+/* ===== Dashboard Cards ===== */
+.dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.dash-card {
+    background-color: #3498db;   /* SAME COLOR FOR ALL */
+    color: white;
+    padding: 30px;
+    height: 100px;               /* Increased height */
+    border-radius: 6px;
+    width: 30%;
+    
+
+    
+}
+
+.dash-card h4 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+}
+
+.dash-card span {
+    margin-top: 10px;
+    font-size: 32px;             /* Bigger number */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== Panels ===== */
+.panel {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.panel h3 {
+    margin: 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.panel-body {
+    padding: 15px;
+}
+
+/* ===== Forms ===== */
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+/* ===== Tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*display: flex;
+    flex-direction: column;
+    justify-content: center;*/
