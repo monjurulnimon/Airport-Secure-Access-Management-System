@@ -95,7 +95,7 @@
     <span id="alertMessage"></span>
 </div>
 
-    <form method="post" action="" onsubmit="return validateCurrentStep(3);">
+    <form method="post" action="login.php" onsubmit="return validateCurrentStep(3);">
 
         <!-- STEP 1 -->
         <div class="step active" id="step-1">
@@ -147,8 +147,11 @@
         <!-- NAVIGATION -->
         <div class="navigation">
             <button type="button" onclick="prevStep()">Previous</button>
-            <button type="button" onclick="nextStep()">Next</button>
+
+            <button type="button" id="nextBtn" onclick="nextStep()">Next</button>
+
             <button type="submit" id="submitBtn" style="display:none;">Register</button>
+
         </div>
 
     </form>
