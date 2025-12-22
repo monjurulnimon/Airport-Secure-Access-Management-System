@@ -108,7 +108,7 @@ unset($_SESSION["loginErr"]);
             <span class="error"><?php echo $passErr; ?></span>
         <?php endif; ?>
 
-        <button type="submit" name="login">Login</button>
+        <button type="submit" action="../admin/dashboard.php" name="login">Login</button>
     </form>
 
     <p>

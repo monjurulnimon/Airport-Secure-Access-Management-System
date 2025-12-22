@@ -41,8 +41,13 @@ if (count($errors) > 0) {
     $values["email"] = $email;
     $_SESSION["previousValues"] = $values;
 
-    header("Location: ../view/auth/login.php");
+    header("Location: ../admin/dashboard.php");
     exit;
+}
+else {
+    //header("Location: ../view/admin/dashboard.php");
+        header("Location: ../view/employee/temporary-access-request.php");
+
 }
 
 /* --------------------
