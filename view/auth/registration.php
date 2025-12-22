@@ -85,7 +85,6 @@
 
     <h2>Visitor Registration</h2>
 
-    <!-- STEP INDICATOR -->
     <div class="steps">
         <div class="step-indicator active" id="indicator-1">Basic</div>
         <div class="step-indicator" id="indicator-2">Contact</div>
@@ -97,7 +96,6 @@
 
     <form method="post" action="login.php" onsubmit="return validateCurrentStep(3);">
 
-        <!-- STEP 1 -->
         <div class="step active" id="step-1">
             <label>Full Name</label>
             <input type="text" name="name">
@@ -112,7 +110,6 @@
             <input type="password" name="confirm_password">
         </div>
 
-        <!-- STEP 2 -->
         <div class="step" id="step-2">
             <label>Contact Number</label>
             <input type="tel" name="contact">
@@ -127,7 +124,6 @@
             <input type="text" name="country">
         </div>
 
-        <!-- STEP 3 -->
         <div class="step" id="step-3">
             <label>Designation</label>
             <input type="text" name="designation">
@@ -144,7 +140,6 @@
             </select>
         </div>
 
-        <!-- NAVIGATION -->
         <div class="navigation">
             <button type="button" onclick="prevStep()">Previous</button>
 
@@ -165,7 +160,6 @@
 
 
 
-<!-- LOAD EXTERNAL JS -->
 <script src="/ASAMS/controller/registration_controller.js"></script>
 
 </body>

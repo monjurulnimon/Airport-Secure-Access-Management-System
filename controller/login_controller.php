@@ -7,9 +7,7 @@ $password = $_POST["password"] ?? "";
 $errors = [];
 $values = [];
 
-/* --------------------
-   VALIDATION
--------------------- */
+
 
 if (empty($email)) {
     $errors["email"] = "Email field is required";
@@ -19,9 +17,7 @@ if (empty($password)) {
     $errors["password"] = "Password field is required";
 }
 
-/* --------------------
-   ERROR HANDLING
--------------------- */
+
 
 if (count($errors) > 0) {
 
@@ -37,7 +33,6 @@ if (count($errors) > 0) {
         unset($_SESSION["passwordErr"]);
     }
 
-    // Preserve previous values
     $values["email"] = $email;
     $_SESSION["previousValues"] = $values;
 
@@ -50,9 +45,7 @@ else {
 
 }
 
-/* --------------------
-   TEMP AUTH CHECK
--------------------- 
+/*
 
 $data = [
     "email"    => "test@test.com",

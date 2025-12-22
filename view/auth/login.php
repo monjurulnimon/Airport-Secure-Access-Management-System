@@ -1,28 +1,27 @@
 <?php
 session_start();
 
-/* --------------------
-   LOGIN GUARD
--------------------- */
 $isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
 if ($isLoggedIn) {
     header("Location: dashboard.php");
     exit;
 }
 
-/* --------------------
-   SESSION ERRORS
--------------------- */
 $emailErr = $_SESSION["emailErr"] ?? '';
 $passErr  = $_SESSION["passwordErr"] ?? '';
 $loginErr = $_SESSION["loginErr"] ?? '';
 $previousValues = $_SESSION["previousValues"] ?? [];
 
-/* --------------------
-   CLEANUP
--------------------- */
-unset($_SESSION["previousValues"]);
+unset($_SESSION["emailErr"]);
+unset($_SESSION["passwordErr"]);
 unset($_SESSION["loginErr"]);
+unset($_SESSION["previousValues"]);
+
+function showError($error) {
+    if (!empty($error)) {
+        echo "<span class='error'>$error</span>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +65,7 @@ unset($_SESSION["loginErr"]);
 
         .error {
             font-size: 14px;
+            color: red;
         }
 
         button {
@@ -86,29 +86,20 @@ unset($_SESSION["loginErr"]);
 
     <h2>Login</h2>
 
-    <?php if ($loginErr): ?>
-        <p class="error"><?php echo $loginErr; ?></p>
-    <?php endif; ?>
+    <?php showError($loginErr); ?>
 
     <form method="post" action="../../controller/login_controller.php">
 
         <label>Email</label>
-        <input
-            type="email"
-            name="email"
-            value="<?php echo ($previousValues['email'] ?? ''); ?>"
-        >
-        <?php if ($emailErr): ?>
-            <span class="error"><?php echo $emailErr; ?></span>
-        <?php endif; ?>
+        <input type="email" name="email"
+               value="<?php echo htmlspecialchars($previousValues['email'] ?? ''); ?>">
+        <?php showError($emailErr); ?>
 
         <label>Password</label>
         <input type="password" name="password">
-        <?php if ($passErr): ?>
-            <span class="error"><?php echo $passErr; ?></span>
-        <?php endif; ?>
+        <?php showError($passErr); ?>
 
-        <button type="submit" action="../admin/dashboard.php" name="login">Login</button>
+        <button type="submit" name="login">Login</button>
     </form>
 
     <p>

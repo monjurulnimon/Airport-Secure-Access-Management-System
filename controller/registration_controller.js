@@ -29,7 +29,6 @@ function hideAlert() {
 
 function validateCurrentStep(step) {
 
-    // ALWAYS hide old alert first
     hideAlert();
 
     if (step === 1) {
@@ -79,7 +78,6 @@ function validateCurrentStep(step) {
         }
     }
 
-    // ✅ THIS LINE FIXES YOUR PROBLEM
     hideAlert();
     return true;
 }
