@@ -1,21 +1,36 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 
-$fullData = [
-    'name' => $_SESSION['name'],
-    'email' => $_SESSION['email'],
-    'password' => $_SESSION['password'],
-    'contact' => $_SESSION['contact'],
-    'address' => $_SESSION['address'],
-    'city' => $_SESSION['city'],
-    'country' => $_SESSION['country'],
-    'designation' => $_POST['designation'],
-    'organization' => $_POST['organization'],
-    'visitor_type' => $_POST['visitor_type']
-];
+require_once "../../model/db_connection.php";
 
-// Insert into database here
+/* Create DB object */
+$db = new db_connection();
+$conn = $db->openConnection();
 
-session_destroy();
+/* Insert visitor */
+$result = $db->registerVisitor(
+    $conn,
+    "employees",
+    $_SESSION['name'],
+    $_SESSION['email'],
+    $_SESSION['password'],
+    $_SESSION['contact'],
+    $_SESSION['address'],
+    $_SESSION['city'],
+    $_SESSION['country'],
+    $_POST['designation'],
+    $_POST['visitor_type']
+);
 
-echo "Registration successful!";
+$db->closeConnection($conn);
+
+/* Result handling */
+if ($result) {
+    session_destroy();
+    echo "<h2>Registration completed successfully</h2>";
+} else {
+    echo "<h2>Registration failed</h2>";
+}

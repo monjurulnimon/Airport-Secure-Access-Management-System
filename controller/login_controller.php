@@ -1,73 +1,65 @@
 <?php
-session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$email    = $_POST["email"] ?? "";
-$password = $_POST["password"] ?? "";
+session_start();
+require_once "../model/db_connection.php";
+
+$email    = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
 
 $errors = [];
 $values = [];
 
-
-
-if (empty($email)) {
+/* Validation */
+if (!$email) {
     $errors["email"] = "Email field is required";
 }
 
-if (empty($password)) {
+if (!$password) {
     $errors["password"] = "Password field is required";
 }
-
-
 
 if (count($errors) > 0) {
 
     if (isset($errors["email"])) {
         $_SESSION["emailErr"] = $errors["email"];
-    } else {
-        unset($_SESSION["emailErr"]);
     }
 
     if (isset($errors["password"])) {
         $_SESSION["passwordErr"] = $errors["password"];
-    } else {
-        unset($_SESSION["passwordErr"]);
     }
 
-    $values["email"] = $email;
-    $_SESSION["previousValues"] = $values;
+    $_SESSION["previousValues"] = ["email" => $email];
 
-    header("Location: ../admin/dashboard.php");
+    header("Location: ../view/auth/login.php");
     exit;
 }
-else {
-    //header("Location: ../view/admin/dashboard.php");
-        header("Location: ../view/employee/temporary-access-request.php");
 
-}
+/* Database login */
+$db = new db_connection();
+$conn = $db->openConnection();
 
-/*
+$result = $db->loginVisitor($conn, "employees", $email, $password);
 
-$data = [
-    "email"    => "test@test.com",
-    "password" => "password"
-];
+if ($result && $result->num_rows === 1) {
 
-if ($email === $data["email"] && $password === $data["password"]) {
-
+    $data = $result->fetch_assoc();   // STANDARD KEPT
     $_SESSION["email"] = $data["email"];
     $_SESSION["isLoggedIn"] = true;
 
-    header("Location: ../View/dashboard.php");
+    $db->closeConnection($conn);
+
+    header("Location: ../view/admin/dashboard.php");
     exit;
 
 } else {
 
     $_SESSION["loginErr"] = "Email or password is incorrect";
+    $_SESSION["previousValues"] = ["email" => $email];
 
-    unset($_SESSION["emailErr"]);
-    unset($_SESSION["passwordErr"]);
+    $db->closeConnection($conn);
 
-    header("Location: ../View/login.php");
+    header("Location: ../view/auth/login.php");
     exit;
 }
-*/
