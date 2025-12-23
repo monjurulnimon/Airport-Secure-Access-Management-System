@@ -8,6 +8,10 @@
             height: 100%;
             margin: 0;
         }
+        
+#submitBtn {
+    display: none;
+}
 
         body {
             display: flex;
@@ -62,11 +66,10 @@
             width: 100%;
         }
 
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
+        .navigation button {
+            min-width: 90px;
         }
+
 
         button {
             padding: 6px 12px;
@@ -94,7 +97,7 @@
     <span id="alertMessage"></span>
 </div>
 
-    <form method="post" action="login.php" onsubmit="return validateCurrentStep(3);">
+    <form method="post" action="registration_controller.js" onsubmit="return validateCurrentStep(3);">
 
         <div class="step active" id="step-1">
             <label>Full Name</label>
@@ -141,14 +144,15 @@
         </div>
 
         <div class="navigation">
-            <button type="button" onclick="prevStep()">Previous</button>
+<button type="button" id="prevBtn" onclick="prevStep()" style="display:inline-block;">
+    Previous
+</button>
 
-            <button type="button" id="nextBtn" onclick="nextStep()">Next</button>
-
-            <button type="submit" id="submitBtn" style="display:none;">Register</button>
-
+        <button type="button" id="nextBtn" onclick="nextStep()">Next</button>
+            <button type="submit" id="submitBtn">Register</button>
         </div>
 
+        
     </form>
 
     <p>

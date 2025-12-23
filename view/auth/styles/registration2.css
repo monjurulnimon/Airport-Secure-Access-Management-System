@@ -1,0 +1,63 @@
+/* Page layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main form container */
+.container {
+    width: 380px;
+    padding: 24px;
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+/* Inputs and select */
+input,
+select {
+    width: 100%;
+    padding: 9px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* Buttons */
+button {
+    padding: 9px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Button group for Step 2 & 3 */
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.button-group button {
+    width: 100%;
+}
+
+/* Custom alert */
+#customAlert {
+    display: none;
+    margin-bottom: 16px;
+    font-size: 14px;
+}

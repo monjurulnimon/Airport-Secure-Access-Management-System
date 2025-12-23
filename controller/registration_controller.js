@@ -2,6 +2,7 @@ let currentStep = 1;
 const totalSteps = 3;
 
 function showStep(step) {
+    // Update step displays
     for (let i = 1; i <= totalSteps; i++) {
         document.getElementById('step-' + i).classList.remove('active');
         document.getElementById('indicator-' + i).classList.remove('active');
@@ -10,8 +11,37 @@ function showStep(step) {
     document.getElementById('step-' + step).classList.add('active');
     document.getElementById('indicator-' + step).classList.add('active');
 
-    document.getElementById('submitBtn').style.display =
-        step === totalSteps ? 'inline-block' : 'none';
+    // Update button visibility
+    updateButtons(step);
+}
+
+function updateButtons(step) {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+
+    console.log('Current step:', step); // Debug log
+    console.log('Buttons found:', prevBtn, nextBtn, submitBtn); // Debug log
+
+    // Step 1: Hide Previous, Show Next, Hide Submit
+    if (step === 1) {
+        document.getElementById("prevBtn").remove();
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+        if (submitBtn) submitBtn.style.display = 'none';
+    }
+    // Step 2: Show Previous, Show Next, Hide Submit
+    else if (step === 2) {
+        if (prevBtn) prevBtn.style.display = 'inline-block';
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+        if (submitBtn) submitBtn.style.display = 'none';
+    }
+    // Step 3: Show Previous, Hide Next, Show Submit
+    else if (step === 3) {
+        if (prevBtn) prevBtn.style.display = 'inline-block';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (submitBtn) submitBtn.style.display = 'inline-block';
+    }
 }
 
 function showAlert(message) {
@@ -26,9 +56,7 @@ function hideAlert() {
     document.getElementById("customAlert").style.display = "none";
 }
 
-
 function validateCurrentStep(step) {
-
     hideAlert();
 
     if (step === 1) {
@@ -82,7 +110,6 @@ function validateCurrentStep(step) {
     return true;
 }
 
-
 function nextStep() {
     if (!validateCurrentStep(currentStep)) return;
 
@@ -98,3 +125,9 @@ function prevStep() {
         showStep(currentStep);
     }
 }
+
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', function() {
+    console.log('Page loaded, initializing...'); // Debug log
+    showStep(1);
+});

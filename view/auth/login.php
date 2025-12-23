@@ -104,7 +104,7 @@ function showError($error) {
 
     <p>
         Don’t have an account?
-        <a href="registration.php">Register here</a>
+        <a href="registration1.php">Register here</a>
     </p>
 
 </div>
