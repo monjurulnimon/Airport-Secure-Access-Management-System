@@ -1,193 +1,161 @@
-/* ===== Global ===== */
+/* ===============================
+   GLOBAL PAGE SETTINGS
+   =============================== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f6f9;
 }
 
-/* ===== Sidebar ===== */
+/* ===============================
+   SIDEBAR
+   =============================== */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 260px;
-    height: 100vh;
+    width: 220px;
+    height: 100%;
     background-color: #2f3e46;
     color: white;
-    overflow-y: auto;
 }
 
+/* Sidebar title */
 .sidebar h2 {
     margin: 0;
-    padding: 20px;
-    background-color: #1b262c;
+    padding: 15px;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /* Sidebar links */
-.sidebar a,
-.menu-label {
+.sidebar a {
     display: block;
-    padding: 12px 20px;
+    padding: 10px 15px;
     color: white;
     text-decoration: none;
-    font-size: 14px;
-    cursor: pointer;
+    font-size: 15px;
 }
 
-.sidebar a:hover,
-.menu-label:hover {
-    background-color: #3a4a52;
-}
 
-/* Hide checkbox */
-input[type="checkbox"] {
-    display: none;
-}
-
-/* Submenu */
-.submenu {
-    display: none;
-    background-color: #3a4a52;
-}
-
-input[type="checkbox"]:checked + .menu-label + .submenu {
+/* Main menu items */
+.menu {
     display: block;
+    padding: 10px 15px;
+    font-size: 15x;
+    font-weight: bold;
+    background-color: #2f3e46;
 }
 
-.submenu a {
-    padding-left: 40px;
-    font-size: 13px;
+/* Sub menu items */
+.submenu {
+    display: block;
+    padding: 8px 25px;
+    font-size: 12px;
+    
+    background-color: #2f3e46;
+    text-decoration: none;
+    color: #cfd8dc;
 }
 
-/* ===== Main Content ===== */
+
+/* ===============================
+   MAIN CONTENT AREA
+   =============================== */
 .main {
-    margin-left: 260px;
+    margin-left: 220px;
     padding: 20px;
 }
 
-/* ===== Dashboard Cards ===== */
-.dashboard-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-}
-
+/* ===============================
+   DASHBOARD CARDS (STACKED)
+   =============================== */
 .dash-card {
-    background-color: #3498db;   /* SAME COLOR FOR ALL */
+    background-color: #3498db;
     color: white;
-    padding: 30px;
-    height: 100px;               /* Increased height */
-    border-radius: 6px;
-    width: 30%;
-    
-
-    
+    padding: 15px;
+    margin-bottom: 15px;
+    width: 50%;
 }
 
+/* Card title */
 .dash-card h4 {
     margin: 0;
-    font-size: 25px;
-    font-weight: normal;
-    font-family: Arial, sans-serif;
+    font-size: 15px;
 }
 
+/* Card number */
 .dash-card span {
-    margin-top: 10px;
-    font-size: 32px;             /* Bigger number */
+    display: block;
+    margin-top: 5px;
+    font-size: 22px;
     font-weight: bold;
-    font-family: Arial, sans-serif;
 }
 
-/* ===== Panels ===== */
+/* ===============================
+   PANELS (FORMS & TABLE SECTIONS)
+   =============================== */
 .panel {
     background-color: white;
     border: 1px solid #ddd;
     margin-bottom: 20px;
 }
 
+/* Panel heading */
 .panel h3 {
     margin: 0;
-    padding: 15px;
+    padding: 12px;
     background-color: #f8f9fa;
-    border-bottom: 1px solid #ddd;
+    font-size: 15px;
 }
 
+/* Panel content */
 .panel-body {
-    padding: 15px;
+    padding: 12px;
 }
 
-/* ===== Forms ===== */
+/* ===============================
+   FORMS
+   =============================== */
 label {
     display: block;
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 input {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+    max-width: 600px;   /* 👈 controls input size */
+    padding: 6px;
+    margin-top: 4px;
 }
 
 button {
-    margin-top: 15px;
-    padding: 8px 15px;
-    cursor: pointer;
+    display: block;        /* 👈 forces button to next line */
+    margin-top: 10px;
+    padding: 6px 12px;
 }
 
-/* ===== Tables ===== */
+
+/* ===============================
+   TABLES
+   =============================== */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+th {
+    padding: 8px;
+    background-color: #f2f2f2;
+    font-size: 13px;
     text-align: left;
-    font-size: 14px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*display: flex;
-    flex-direction: column;
-    justify-content: center;*/
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+    word-break: break-word;
+}
