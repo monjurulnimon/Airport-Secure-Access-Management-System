@@ -9,7 +9,7 @@ $_SESSION['password'] = $_POST['password'] ?? '';
 <html>
 <head>
     <title>Visitor Registration – Step 2</title>
-    <link rel="stylesheet" href="/Airport-Secure-Access-Management-System/view/auth/styles/registration2.css">
+    <link rel="stylesheet" href="/Airport-Secure-Access-Management-System/employee/view/auth/styles/registration2.css">
 </head>
 <body>
 
@@ -46,10 +46,14 @@ $_SESSION['password'] = $_POST['password'] ?? '';
         </div>
 
     </form>
+        <p>
+        Already have an account?
+        <a href="login.php">Login here</a>
+    </p>
 
 </div>
 
-<script src="/Airport-Secure-Access-Management-System/controller/reg_controller2.js"></script>
+<script src="/Airport-Secure-Access-Management-System/employee/controller/auth/reg_controller2.js"></script>
 
 </body>
 </html>

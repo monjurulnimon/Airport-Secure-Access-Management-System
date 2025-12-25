@@ -30,7 +30,8 @@ $db->closeConnection($conn);
 /* Result handling */
 if ($result) {
     session_destroy();
-    echo "<h2>Registration completed successfully</h2>";
+    header("location: login.php");
+//    echo "<h2>Registration completed successfully</h2>";
 } else {
     echo "<h2>Registration failed</h2>";
 }

@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-$isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
-if ($isLoggedIn) {
-    header("Location: dashboard.php");
-    exit;
-}
 
 $emailErr = $_SESSION["emailErr"] ?? '';
 $passErr  = $_SESSION["passwordErr"] ?? '';
@@ -88,7 +83,7 @@ function showError($error) {
 
     <?php showError($loginErr); ?>
 
-    <form method="post" action="../../controller/login_controller.php">
+    <form method="post" action="../../controller/auth/login_controller.php">
 
         <label>Email</label>
         <input type="email" name="email"

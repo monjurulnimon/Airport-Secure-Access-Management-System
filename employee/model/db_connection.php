@@ -21,7 +21,7 @@ class db_connection {
     function registerVisitor(
         $connection,
         $tableName,
-        $full_name,
+        $name,
         $email,
         $password,
         $contact,

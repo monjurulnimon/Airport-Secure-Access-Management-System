@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
-require_once "../model/db_connection.php";
+require_once "../../model/db_connection.php";
 
 $email    = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
@@ -32,8 +32,9 @@ if (count($errors) > 0) {
 
     $_SESSION["previousValues"] = ["email" => $email];
 
-    header("Location: ../view/auth/login.php");
-    exit;
+header("Location: ../../view/auth/login.php");
+exit;
+
 }
 
 /* Database login */
@@ -42,7 +43,7 @@ $conn = $db->openConnection();
 
 $result = $db->loginVisitor($conn, "employees", $email, $password);
 
-if ($result && $result->num_rows === 1) {
+if ($result && $result->num_rows >0 ) {
 
     $data = $result->fetch_assoc();   // STANDARD KEPT
     $_SESSION["email"] = $data["email"];
@@ -50,7 +51,8 @@ if ($result && $result->num_rows === 1) {
 
     $db->closeConnection($conn);
 
-    header("Location: ../view/admin/dashboard.php");
+
+    header("Location: ../../../admin/view/dashboard.php");
     exit;
 
 } else {
@@ -60,6 +62,6 @@ if ($result && $result->num_rows === 1) {
 
     $db->closeConnection($conn);
 
-    header("Location: ../view/auth/login.php");
-    exit;
+header("Location: ../../view/auth/login.php");
+exit;
 }

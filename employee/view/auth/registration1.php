@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Visitor Registration – Step 1</title>
-    <link rel="stylesheet" href="/Airport-Secure-Access-Management-System/view/auth/styles/registration1.css">
+    <link rel="stylesheet" href="/Airport-Secure-Access-Management-System/employee/view/auth/styles/registration1.css">
 </head>
 <body>
 
@@ -32,10 +32,13 @@
         <button type="submit">Next</button>
 
     </form>
-
+    <p>
+        Already have an account?
+        <a href="login.php">Login here</a>
+    </p>
 </div>
 
-<script src="/Airport-Secure-Access-Management-System/controller/reg_controller1.js"></script>
+<script src="/Airport-Secure-Access-Management-System/employee/controller/auth/reg_controller1.js"></script>
 
 </body>
 </html>
