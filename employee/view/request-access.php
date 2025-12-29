@@ -69,7 +69,6 @@ if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
 
             </div>
         </form>
-        <!-- ✅ FORM END -->
 
     </div>
 </div>
