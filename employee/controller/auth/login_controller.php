@@ -70,19 +70,23 @@ else if($email === $SECURITY_EMAIL && $password === $SECURITY_PASS) {
     header("Location: ../../../officer/view/officer-dashboard.php");
     exit;
 }
-else if ($result && $result->num_rows >0 ) {
+else if ($result && $result->num_rows > 0) {
 
     $data = $result->fetch_assoc();   // STANDARD KEPT
+
     $_SESSION["email"] = $data["email"];
+    $_SESSION["name"]  = $data["name"];   
     $_SESSION["isLoggedIn"] = true;
+    $_SESSION["role"] = "employee";
+    $_SESSION["employee_id"] = $data["id"];
+
 
     $db->closeConnection($conn);
 
-
-    header("Location: ../../../employee/view/request-history.php");
+    header("Location: ../../../employee/view/employee-dashboard.php");
     exit;
-
-} else {
+}
+ else {
 
     $_SESSION["loginErr"] = "Email or password is incorrect";
     $_SESSION["previousValues"] = ["email" => $email];
