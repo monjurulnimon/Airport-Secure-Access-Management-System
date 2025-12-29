@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Request History</title>
+    <title>Request Status</title>
     <link rel="stylesheet" href="employee.css">
 </head>
 <body>
@@ -17,25 +17,24 @@
 
 <div class="main">
     <div class="panel">
-        <h3>Request History</h3>
+        <h3>Request Status</h3>
         <div class="panel-body">
+
             <table>
                 <tr>
                     <th>Zone</th>
-                    <th>Purpose</th>
                     <th>Status</th>
+                    <th>Officer Remarks</th>
+                    <th>Action</th>
                 </tr>
                 <tr>
-                    <td>Control Room</td>
-                    <td>Inspection</td>
-                    <td>Approved</td>
-                </tr>
-                <tr>
-                    <td>Cargo Area</td>
-                    <td>Logistics</td>
-                    <td>Rejected</td>
+                    <td>Terminal A</td>
+                    <td>Pending</td>
+                    <td>Under review</td>
+                    <td><button>Cancel</button></td>
                 </tr>
             </table>
+
         </div>
     </div>
 </div>
