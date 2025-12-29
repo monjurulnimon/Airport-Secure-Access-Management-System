@@ -43,7 +43,34 @@ $conn = $db->openConnection();
 
 $result = $db->loginVisitor($conn, "employees", $email, $password);
 
-if ($result && $result->num_rows >0 ) {
+// admin er fixed
+$ADMIN_EMAIL = "admin@gmail.com";
+$ADMIN_PASS  = "admin123";
+//security officer mail
+$SECURITY_EMAIL = "security@gmail.com";
+$SECURITY_PASS  = "security123";
+
+
+if ($email === $ADMIN_EMAIL && $password === $ADMIN_PASS) {
+
+    $_SESSION["email"] = $ADMIN_EMAIL;
+    $_SESSION["role"] = "admin";
+    $_SESSION["isLoggedIn"] = true;
+
+    header("Location: ../../../admin/view/dashboard.php");
+    exit;
+}
+
+else if($email === $SECURITY_EMAIL && $password === $SECURITY_PASS) {
+
+    $_SESSION["email"] = $SECURITY_EMAIL;
+    $_SESSION["role"] = "security";
+    $_SESSION["isLoggedIn"] = true;
+
+    header("Location: ../../../officer/view/officer-dashboard.php");
+    exit;
+}
+else if ($result && $result->num_rows >0 ) {
 
     $data = $result->fetch_assoc();   // STANDARD KEPT
     $_SESSION["email"] = $data["email"];
@@ -52,7 +79,7 @@ if ($result && $result->num_rows >0 ) {
     $db->closeConnection($conn);
 
 
-    header("Location: ../../../admin/view/dashboard.php");
+    header("Location: ../../../employee/view/request-history.php");
     exit;
 
 } else {
