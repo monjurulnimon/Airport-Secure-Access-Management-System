@@ -26,7 +26,7 @@ $email = $_SESSION["email"];
     <a href="request-status.php">Request Status</a>
     <a href="access-pass.php">Access Pass</a>
     <a href="request-history.php">Request History</a>
-    <a href="logout.php">Logout</a>
+    <a href="auth/logout.php">Logout</a>
 </div>
 
 <div class="main">
