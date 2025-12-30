@@ -1,10 +1,12 @@
 <?php
+
 session_start();
 
 if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
     header("Location: ../../auth/login.php");
     exit;
 }
+
 
 $id = $_SESSION["id"];
 $name  = $_SESSION["name"];
