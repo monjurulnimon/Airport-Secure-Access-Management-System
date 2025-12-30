@@ -1,3 +1,9 @@
+<?php
+require_once "../model/zone_model.php";
+$model = new ZoneModel();
+$zones = $model->getAllZones();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,29 +28,57 @@
     <a href="system-monitoring.php" class="menu">System Monitoring</a>
 </div>
 
-
-
 <div class="main">
+
+    <!-- CREATE ZONE -->
     <div class="panel">
         <h3>Create Zone</h3>
         <div class="panel-body">
-            <label>Zone Name</label>
-            <input type="text">
-            <button>Create Zone</button>
+
+            <form method="POST" action="../controller/zone_controller.php">
+                <label>Zone Name</label>
+                <input type="text" name="zone_name" required>
+                <button type="submit" name="createZone">Create Zone</button>
+            </form>
+
         </div>
     </div>
 
+    <!-- EXISTING ZONES -->
     <div class="panel">
         <h3>Existing Zones</h3>
         <div class="panel-body">
+
             <table>
-            <tr>
-                <td>Terminal A</td>
-                <td><button>Delete</button></td>
-            </tr>
+                <tr>
+                    <th>Zone Name</th>
+                    <th>Action</th>
+                </tr>
+
+                <?php if ($zones && $zones->num_rows > 0) {
+                    while ($row = $zones->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row["zone_name"]) ?></td>
+                            <td>
+                                <form method="POST" action="../controller/zone_controller.php"
+                                      onsubmit="return confirm('Delete this zone permanently?');">
+                                    <input type="hidden" name="zone_id" value="<?= $row["id"] ?>">
+                                    <button type="submit" name="deleteZone">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                <?php }
+                } else { ?>
+                    <tr>
+                        <td colspan="2">No zones found</td>
+                    </tr>
+                <?php } ?>
+
             </table>
+
         </div>
     </div>
+
 </div>
 
 </body>

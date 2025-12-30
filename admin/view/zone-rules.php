@@ -1,3 +1,9 @@
+<?php
+require_once "../model/zone_rule_model.php";
+$model = new ZoneRuleModel();
+$rules = $model->getAllRules();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,28 +28,64 @@
     <a href="system-monitoring.php" class="menu">System Monitoring</a>
 </div>
 
-
-
 <div class="main">
+
+    <!-- CREATE RULE -->
     <div class="panel">
         <h3>Create Rule</h3>
         <div class="panel-body">
-            <input type="text">
-            <button>Add Rule</button>
+
+            <?php if (isset($_GET["error"]) && $_GET["error"] === "length") { ?>
+                <p style="color:red;">Rule must be at least 5 characters.</p>
+            <?php } ?>
+
+            <?php if (isset($_GET["error"]) && $_GET["error"] === "exists") { ?>
+                <p style="color:red;">Rule already exists.</p>
+            <?php } ?>
+
+            <form method="POST" action="../controller/zone_rule_controller.php">
+                <input type="text" name="rule_text" placeholder="Enter rule..." required>
+                <button type="submit" name="createRule">Add Rule</button>
+            </form>
+
         </div>
     </div>
 
+    <!-- EXISTING RULES -->
     <div class="panel">
         <h3>Existing Rules</h3>
         <div class="panel-body">
+
             <table>
                 <tr>
-                    <td>Only Officers Allowed</td>
-                    <td><button>Delete</button></td>
+                    <th>Rule</th>
+                    <th>Action</th>
                 </tr>
+
+                <?php if ($rules && $rules->num_rows > 0) {
+                    while ($row = $rules->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row["rule_text"]); ?></td>
+                            <td>
+                                <form method="POST" action="../controller/zone_rule_controller.php"
+                                      onsubmit="return confirm('Delete this rule?');">
+                                    <input type="hidden" name="rule_id" value="<?php echo $row["id"]; ?>">
+                                    <button type="submit" name="deleteRule">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                <?php }
+                } else { ?>
+                    <tr>
+                        <td colspan="2">No rules found</td>
+                    </tr>
+                <?php } ?>
+
             </table>
+
         </div>
     </div>
+
 </div>
 
 </body>
