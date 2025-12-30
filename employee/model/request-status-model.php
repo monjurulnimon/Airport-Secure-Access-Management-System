@@ -44,4 +44,32 @@ class RequestStatusModel {
         $stmt->close();
         $db->closeConnection($conn);
     }
+
+    public function getHistoryByEmployeeEmail($email) {
+    $db = new db_connection();
+    $conn = $db->openConnection();
+
+    $stmt = $conn->prepare(
+        "SELECT zone_name, visit_purpose, status, requested_at
+         FROM zone_access_requests
+         WHERE employee_email = ?
+           AND status != 'pending'
+         ORDER BY requested_at DESC"
+    );
+
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $data = [];
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    $stmt->close();
+    $db->closeConnection($conn);
+
+    return $data;
+}
+
 }
