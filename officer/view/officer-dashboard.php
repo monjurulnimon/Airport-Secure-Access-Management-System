@@ -1,3 +1,20 @@
+<?php
+include 'db.php';  // path adjust korbe according to folder
+
+$sql = "SELECT employee_name, zone_name, visit_purpose, duration_hours FROM zone_access_requests";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    die("Query failed: " . mysqli_error($conn));
+}
+?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +38,20 @@
         <div class="info-row">
             <div class="info-box">
                 <strong>Total Pending Requests</strong>
-                <div>12</div>
+
+
+<?php
+// Check if $pending exists, otherwise initialize as empty array
+if (!isset($pending)) {
+    $pending = []; // empty array default
+}
+?>
+
+
+
+               <div><?php echo $pending['total'] ?? 0; ?></div>
+
+
             </div>
         </div>
 
@@ -30,35 +60,42 @@
         <!-- ACCEPTED REQUESTS TABLE -->
         <h3>Accepted Requests</h3>
 
-        <table>
-            <tr>
-                <th>Visitor Name</th>
-                <th>Requested Zone</th>
-                <th>Reason</th>
-                <th>Duration</th>
-            </tr>
 
-            <tr>
-                <td>Ali Hasan</td>
-                <td>Terminal A</td>
-                <td>Maintenance Work</td>
-                <td>2 Hours</td>
-            </tr>
 
-            <tr>
-                <td>Rahim Uddin</td>
-                <td>Control Room</td>
-                <td>System Inspection</td>
-                <td>1 Hour</td>
-            </tr>
 
-            <tr>
-                <td>Karim Ahmed</td>
-                <td>Cargo Area</td>
-                <td>Logistics Check</td>
-                <td>3 Hours</td>
-            </tr>
+          
+    <table border="1" cellpadding="10">
+    <tr>
+        <th>Visitor Name</th>
+        <th>Requested Zone</th>
+        <th>Purpose</th> <!-- visit_purpose -->
+        <th>Duration</th>
+    </tr>
+
+    <?php
+    include 'db.php'; // path adjust koro
+
+    $sql = "SELECT employee_name, zone_name, visit_purpose, duration_hours FROM zone_access_requests";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td>".$row['employee_name']."</td>";
+            echo "<td>".$row['zone_name']."</td>";
+            echo "<td>".$row['visit_purpose']."</td>"; // Purpose column
+            echo "<td>".$row['duration_hours']." Hours</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='4'>No data found</td></tr>";
+    }
+    ?>
+
         </table>
+
+
+
 
         <!-- BUTTON BELOW TABLE (RIGHT) -->
         <div class="right-action">

@@ -1,3 +1,10 @@
+<?php
+include "db.php";
+
+$query = "SELECT * FROM zone_access_requests WHERE status = 'pending'";
+$result = mysqli_query($conn, $query);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,18 +13,21 @@
 </head>
 <body>
 
-<!-- Top Navigation -->
 <div class="top-nav">
     <a href="officer-dashboard.php">Dashboard</a>
     <a href="#">Logout</a>
 </div>
 
 <div class="main">
-
     <div class="section">
         <h2>Pending Access Requests</h2>
 
-        <!-- REQUEST 1 -->
+        <?php if (mysqli_num_rows($result) == 0) { ?>
+            <p>No pending requests</p>
+        <?php } ?>
+
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+
         <div class="request-block">
 
             <table>
@@ -27,60 +37,37 @@
                     <th>Reason</th>
                     <th>Duration</th>
                 </tr>
-
                 <tr>
-                    <td>Ali Hasan</td>
-                    <td>Terminal A</td>
-                    <td>Maintenance Work</td>
-                    <td>2 Hours</td>
+                    <td><?= $row['employee_name'] ?></td>
+                    <td><?= $row['zone_name'] ?></td>
+                    <td><?= $row['visit_purpose'] ?></td>
+                    <td><?= $row['duration_hours'] ?> Hour</td>
                 </tr>
             </table>
 
-            <div class="remarks-area">
-                <strong>Officer Remarks (for this request):</strong>
-                <textarea placeholder="Write your comment here..." data-request-id="101"></textarea>
-            </div>
+            <form method="POST" action="process-request.php">
+                <input type="hidden" name="request_id"
+                       value="<?= $row['request_id'] ?>">
 
-            <div class="action-buttons">
-                <button class="approve" data-request-id="101">Approve</button>
-                <button class="reject" data-request-id="101">Reject</button>
-            </div>
+                <strong>Officer Remarks:</strong><br>
+                <textarea name="remarks" required></textarea><br><br>
 
-        </div>
+                <button type="submit" name="action"
+                        value="approved" class="approve">
+                    Approve
+                </button>
 
-        <!-- REQUEST 2 -->
-        <div class="request-block">
-
-            <table>
-                <tr>
-                    <th>Visitor Name</th>
-                    <th>Requested Zone</th>
-                    <th>Reason</th>
-                    <th>Duration</th>
-                </tr>
-
-                <tr>
-                    <td>Rahim Uddin</td>
-                    <td>Control Room</td>
-                    <td>System Inspection</td>
-                    <td>1 Hour</td>
-                </tr>
-            </table>
-
-            <div class="remarks-area">
-                <strong>Officer Remarks (for this request):</strong>
-                <textarea placeholder="Write your comment here..." data-request-id="102"></textarea>
-            </div>
-
-            <div class="action-buttons">
-                 <button class="approve" data-request-id="102">Approve</button>
-                <button class="reject" data-request-id="102">Reject</button>
-            </div>
+                <button type="submit" name="action"
+                        value="rejected" class="reject">
+                    Reject
+                </button>
+            </form>
 
         </div>
+
+        <?php } ?>
 
     </div>
-
 </div>
 
 </body>

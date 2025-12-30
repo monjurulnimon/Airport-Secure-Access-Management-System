@@ -95,6 +95,7 @@ function showError($error) {
         <?php showError($passErr); ?>
 
         <button type="submit" name="login">Login</button>
+
     </form>
 
     <p>
