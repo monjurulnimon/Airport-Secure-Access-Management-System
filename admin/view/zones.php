@@ -35,10 +35,15 @@ $zones = $model->getAllZones();
         <h3>Create Zone</h3>
         <div class="panel-body">
 
-            <form method="POST" action="../controller/zone_controller.php">
+            <form method="POST"
+                  action="../controller/zone_controller.php"
+                  onsubmit="return validateZone();">
+
                 <label>Zone Name</label>
-                <input type="text" name="zone_name" required>
+                <input type="text" name="zone_name" id="zone_name">
                 <button type="submit" name="createZone">Create Zone</button>
+
+                <p id="zoneError" style="color:red; margin-top:5px;"></p>
             </form>
 
         </div>
@@ -60,7 +65,8 @@ $zones = $model->getAllZones();
                         <tr>
                             <td><?= htmlspecialchars($row["zone_name"]) ?></td>
                             <td>
-                                <form method="POST" action="../controller/zone_controller.php"
+                                <form method="POST"
+                                      action="../controller/zone_controller.php"
                                       onsubmit="return confirm('Delete this zone permanently?');">
                                     <input type="hidden" name="zone_id" value="<?= $row["id"] ?>">
                                     <button type="submit" name="deleteZone">Delete</button>
@@ -80,6 +86,27 @@ $zones = $model->getAllZones();
     </div>
 
 </div>
+
+<!-- ===== JS VALIDATION ===== -->
+<script>
+function validateZone() {
+    const zone = document.getElementById("zone_name").value.trim();
+    const error = document.getElementById("zoneError");
+
+    if (zone === "") {
+        error.innerText = "Zone name cannot be empty";
+        return false;
+    }
+
+    if (zone.length < 3) {
+        error.innerText = "Zone name must be at least 3 characters";
+        return false;
+    }
+
+    error.innerText = "";
+    return true;
+}
+</script>
 
 </body>
 </html>

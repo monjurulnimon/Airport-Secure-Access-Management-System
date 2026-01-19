@@ -5,15 +5,17 @@ class ZoneModel {
 
     /* CREATE ZONE */
     public function createZone($zoneName) {
-        $db = new db_connection();
-        $conn = $db->openConnection();
+    $db = new db_connection();
+    $conn = $db->openConnection();
 
-        $sql = "INSERT INTO zones (zone_name) VALUES ('$zoneName')";
-        $result = $conn->query($sql);
+    $sql = "INSERT INTO zones (zone_name) VALUES (?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $zoneName);
+    $result = $stmt->execute();
 
-        $db->closeConnection($conn);
-        return $result;
-    }
+    $db->closeConnection($conn);
+    return $result;
+}
 
     /* FETCH ALL ZONES */
     public function getAllZones() {

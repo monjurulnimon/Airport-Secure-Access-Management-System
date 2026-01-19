@@ -1,8 +1,26 @@
+<?php
+require_once "../model/system_monitoring_model.php";
+
+$model = new SystemMonitoringModel();
+$logs = $model->getAllAccessLogs();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>System Monitoring</title>
     <link rel="stylesheet" href="dashboard.css">
+    <style>
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #fff;
+        }
+        .approved { background: #28a745; }
+        .pending { background: #ffc107; color:#000; }
+        .rejected { background: #dc3545; }
+    </style>
 </head>
 <body>
 
@@ -22,24 +40,52 @@
     <a href="system-monitoring.php" class="menu">System Monitoring</a>
 </div>
 
-
 <div class="main">
     <div class="panel">
-        <h3>Access Decisions</h3>
+        <h3>Access Request Logs</h3>
+
         <div class="panel-body">
             <table>
                 <tr>
-                    <th>User</th>
-                    <th>Officer</th>
-                    <th>Decision</th>
+                    <th>Employee</th>
+                    <th>Email</th>
+                    <th>Zone</th>
+                    <th>Purpose</th>
+                    <th>Visit Date</th>
                     <th>Duration</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                    <th>Requested At</th>
                 </tr>
-                <tr>
-                    <td>Employee A</td>
-                    <td>Officer01</td>
-                    <td>Approved</td>
-                    <td>2 Hours</td>
-                </tr>
+
+                <?php if ($logs && $logs->num_rows > 0) { ?>
+                    <?php while ($row = $logs->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row["employee_name"]) ?></td>
+                            <td><?= htmlspecialchars($row["employee_email"]) ?></td>
+                            <td><?= htmlspecialchars($row["zone_name"]) ?></td>
+                            <td><?= htmlspecialchars($row["visit_purpose"]) ?></td>
+                            <td><?= $row["visit_date"] ?></td>
+                            <td><?= $row["duration_hours"] ?> hrs</td>
+                            <td>
+                                <?php
+                                    $status = $row["status"];
+                                    $class = $status === "approved" ? "approved" :
+                                             ($status === "rejected" ? "rejected" : "pending");
+                                ?>
+                                <span class="badge <?= $class ?>">
+                                    <?= ucfirst($status) ?>
+                                </span>
+                            </td>
+                            <td><?= $row["remarks"] ?? "-" ?></td>
+                            <td><?= $row["created_at"] ?></td>
+                        </tr>
+                    <?php } ?>
+                <?php } else { ?>
+                    <tr>
+                        <td colspan="9">No access requests found</td>
+                    </tr>
+                <?php } ?>
             </table>
         </div>
     </div>

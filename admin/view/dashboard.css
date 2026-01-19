@@ -37,12 +37,11 @@ body {
     font-size: 15px;
 }
 
-
 /* Main menu items */
 .menu {
     display: block;
     padding: 10px 15px;
-    font-size: 15x;
+    font-size: 15px; /* FIXED */
     font-weight: bold;
     background-color: #2f3e46;
 }
@@ -52,43 +51,44 @@ body {
     display: block;
     padding: 8px 25px;
     font-size: 12px;
-    
     background-color: #2f3e46;
     text-decoration: none;
     color: #cfd8dc;
 }
-
 
 /* ===============================
    MAIN CONTENT AREA
    =============================== */
 .main {
     margin-left: 220px;
-    padding: 20px;
+    padding: 25px;
 }
 
 /* ===============================
-   DASHBOARD CARDS (STACKED)
+   DASHBOARD CARDS (IMPROVED)
    =============================== */
 .dash-card {
     background-color: #3498db;
     color: white;
-    padding: 15px;
-    margin-bottom: 15px;
-    width: 50%;
+    padding: 18px;
+    margin-bottom: 18px;
+    width: 360px;
+    border-radius: 6px;                  /* ADDED */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* ADDED */
 }
 
 /* Card title */
 .dash-card h4 {
     margin: 0;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 /* Card number */
 .dash-card span {
     display: block;
-    margin-top: 5px;
-    font-size: 22px;
+    margin-top: 8px;
+    font-size: 26px;     /* IMPROVED */
     font-weight: bold;
 }
 
@@ -125,17 +125,17 @@ label {
 
 input {
     width: 100%;
-    max-width: 600px;   
+    max-width: 600px;
     padding: 6px;
     margin-top: 4px;
 }
 
 button {
-    display: block;        
+    display: block;
     margin-top: 10px;
     padding: 6px 12px;
+    cursor: pointer; /* ADDED */
 }
-
 
 /* ===============================
    TABLES

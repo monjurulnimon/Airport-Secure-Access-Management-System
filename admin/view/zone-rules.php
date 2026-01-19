@@ -43,9 +43,18 @@ $rules = $model->getAllRules();
                 <p style="color:red;">Rule already exists.</p>
             <?php } ?>
 
-            <form method="POST" action="../controller/zone_rule_controller.php">
-                <input type="text" name="rule_text" placeholder="Enter rule..." required>
+            <form method="POST"
+                  action="../controller/zone_rule_controller.php"
+                  onsubmit="return validateRule();">
+
+                <input type="text"
+                       name="rule_text"
+                       id="rule_text"
+                       placeholder="Enter rule...">
+
                 <button type="submit" name="createRule">Add Rule</button>
+
+                <p id="ruleError" style="color:red; margin-top:5px;"></p>
             </form>
 
         </div>
@@ -65,11 +74,12 @@ $rules = $model->getAllRules();
                 <?php if ($rules && $rules->num_rows > 0) {
                     while ($row = $rules->fetch_assoc()) { ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row["rule_text"]); ?></td>
+                            <td><?= htmlspecialchars($row["rule_text"]) ?></td>
                             <td>
-                                <form method="POST" action="../controller/zone_rule_controller.php"
+                                <form method="POST"
+                                      action="../controller/zone_rule_controller.php"
                                       onsubmit="return confirm('Delete this rule?');">
-                                    <input type="hidden" name="rule_id" value="<?php echo $row["id"]; ?>">
+                                    <input type="hidden" name="rule_id" value="<?= $row["id"] ?>">
                                     <button type="submit" name="deleteRule">Delete</button>
                                 </form>
                             </td>
@@ -87,6 +97,27 @@ $rules = $model->getAllRules();
     </div>
 
 </div>
+
+<!-- ===== JS VALIDATION ===== -->
+<script>
+function validateRule() {
+    const rule = document.getElementById("rule_text").value.trim();
+    const error = document.getElementById("ruleError");
+
+    if (rule === "") {
+        error.innerText = "Rule cannot be empty";
+        return false;
+    }
+
+    if (rule.length < 5) {
+        error.innerText = "Rule must be at least 5 characters";
+        return false;
+    }
+
+    error.innerText = "";
+    return true;
+}
+</script>
 
 </body>
 </html>

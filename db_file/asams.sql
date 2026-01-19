@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 05, 2026 at 10:50 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Jan 19, 2026 at 09:02 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,15 +29,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `contact` varchar(20) NOT NULL,
-  `address` text NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `designation` varchar(50) NOT NULL,
-  `visitor_type` varchar(50) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `contact` varchar(20) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `country` varchar(50) DEFAULT NULL,
+  `designation` varchar(50) DEFAULT NULL,
+  `visitor_type` varchar(20) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -46,8 +46,8 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `name`, `email`, `password`, `contact`, `address`, `city`, `country`, `designation`, `visitor_type`, `created_at`) VALUES
-(1, 'Monjurul Islam', 'nimon09.11@gmail.com', '123456', '01724567856', 'null', 'null', 'Bangladesh', 'Security Officer', 'guest', '2025-12-29 10:32:39'),
-(3, 'Risha', 'rishapatra16@gmail.com', 'risha123', '+918267812', 'null', 'null', 'India', 'Guest', 'guest', '2026-01-05 09:38:33');
+(1, 'qqq', 'qqq@', 'qqqqqq', 'wqwqwq', 'wqwq', 'wqwq', 'wqwq', 'wewe', 'guest', '2026-01-16 10:23:42'),
+(2, 'qqq', 'qqq@gmail.com', 'qqqqqq', 'wq', 'wqwq', 'w', 'w', 'qw', 'guest', '2026-01-16 10:25:16');
 
 -- --------------------------------------------------------
 
@@ -57,8 +57,8 @@ INSERT INTO `employees` (`id`, `name`, `email`, `password`, `contact`, `address`
 
 CREATE TABLE `security_officers` (
   `id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -67,8 +67,8 @@ CREATE TABLE `security_officers` (
 --
 
 INSERT INTO `security_officers` (`id`, `username`, `password`, `created_at`) VALUES
-(3, 's@gmail.com', 'ssssss', '2025-12-30 20:18:15'),
-(5, 'security@gmail.com', 'security123', '2026-01-05 07:19:13');
+(1, 'ww', 'www', '2026-01-16 10:35:53'),
+(3, 'yyyyyyyyy', 'yyyyy', '2026-01-16 13:32:03');
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ INSERT INTO `security_officers` (`id`, `username`, `password`, `created_at`) VAL
 
 CREATE TABLE `zones` (
   `id` int(11) NOT NULL,
-  `zone_name` varchar(100) NOT NULL,
+  `zone_name` varchar(100) DEFAULT NULL,
   `status` enum('active','inactive') DEFAULT 'active',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -88,8 +88,9 @@ CREATE TABLE `zones` (
 --
 
 INSERT INTO `zones` (`id`, `zone_name`, `status`, `created_at`) VALUES
-(2, 'qqqqq', 'active', '2025-12-30 21:23:28'),
-(3, 'Mar-a-Logo', 'active', '2026-01-05 07:20:07');
+(1, 'qqqqqqqqqq', 'active', '2026-01-16 10:36:19'),
+(2, 'eeeeeeeeeee', 'active', '2026-01-16 10:36:23'),
+(3, '<script>alert(\"QWER\")</script>', 'active', '2026-01-16 13:48:01');
 
 -- --------------------------------------------------------
 
@@ -98,26 +99,24 @@ INSERT INTO `zones` (`id`, `zone_name`, `status`, `created_at`) VALUES
 --
 
 CREATE TABLE `zone_access_requests` (
-  `request_id` int(11) NOT NULL,
-  `employee_name` varchar(150) NOT NULL,
-  `employee_email` varchar(255) NOT NULL,
-  `zone_name` varchar(100) NOT NULL,
-  `visit_purpose` text NOT NULL,
-  `visit_date` date NOT NULL,
-  `duration_hours` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `employee_name` varchar(100) DEFAULT NULL,
+  `employee_email` varchar(100) DEFAULT NULL,
+  `zone_name` varchar(100) DEFAULT NULL,
+  `visit_purpose` text DEFAULT NULL,
+  `visit_date` date DEFAULT NULL,
+  `duration_hours` int(11) DEFAULT NULL,
   `status` enum('pending','approved','rejected') DEFAULT 'pending',
-  `requested_at` datetime DEFAULT current_timestamp(),
-  `officer_remarks` varchar(255) DEFAULT NULL
+  `remarks` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `zone_access_requests`
 --
 
-INSERT INTO `zone_access_requests` (`request_id`, `employee_name`, `employee_email`, `zone_name`, `visit_purpose`, `visit_date`, `duration_hours`, `status`, `requested_at`, `officer_remarks`) VALUES
-(1, 'Monjurul Islam', 'nimon09.11@gmail.com', 'Cargo Area', 'trail', '2025-12-31', 1, 'approved', '2025-12-29 15:01:39', 'welcome boss'),
-(3, 'Monjurul Islam', 'nimon09.11@gmail.com', 'Terminal A', 'A', '2025-12-24', 1, 'approved', '2025-12-31 01:20:25', 'ffffff'),
-(6, 'Risha', 'rishapatra16@gmail.com', 'Control Room', 'As a guest', '2026-01-20', 2, 'rejected', '2026-01-05 15:49:06', 'You are not a citizen');
+INSERT INTO `zone_access_requests` (`id`, `employee_name`, `employee_email`, `zone_name`, `visit_purpose`, `visit_date`, `duration_hours`, `status`, `remarks`, `created_at`) VALUES
+(1, 'qqq', 'qqq@gmail.com', 'Terminal A', 'qqq', '2026-01-24', 3, 'pending', NULL, '2026-01-16 10:41:34');
 
 -- --------------------------------------------------------
 
@@ -127,7 +126,7 @@ INSERT INTO `zone_access_requests` (`request_id`, `employee_name`, `employee_ema
 
 CREATE TABLE `zone_rules` (
   `id` int(11) NOT NULL,
-  `rule_text` varchar(255) NOT NULL,
+  `rule_text` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -136,7 +135,7 @@ CREATE TABLE `zone_rules` (
 --
 
 INSERT INTO `zone_rules` (`id`, `rule_text`, `created_at`) VALUES
-(2, 'NIMON IS PROHIBITTED...', '2025-12-30 22:04:09');
+(2, 'qqqqqqqqqqqqqqqq1111111111', '2026-01-16 10:37:02');
 
 --
 -- Indexes for dumped tables
@@ -146,8 +145,7 @@ INSERT INTO `zone_rules` (`id`, `rule_text`, `created_at`) VALUES
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `security_officers`
@@ -167,7 +165,7 @@ ALTER TABLE `zones`
 -- Indexes for table `zone_access_requests`
 --
 ALTER TABLE `zone_access_requests`
-  ADD PRIMARY KEY (`request_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `zone_rules`
@@ -183,13 +181,13 @@ ALTER TABLE `zone_rules`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `security_officers`
 --
 ALTER TABLE `security_officers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `zones`
@@ -201,7 +199,7 @@ ALTER TABLE `zones`
 -- AUTO_INCREMENT for table `zone_access_requests`
 --
 ALTER TABLE `zone_access_requests`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `zone_rules`
