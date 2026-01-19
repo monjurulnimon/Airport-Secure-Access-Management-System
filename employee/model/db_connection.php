@@ -49,7 +49,7 @@ class db_connection {
         $result = $connection->query($sql);
         return $result;
     }
-
+           
     // Visitor Login
     function loginVisitor($connection, $tableName, $email, $password) {
 

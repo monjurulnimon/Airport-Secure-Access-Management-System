@@ -16,7 +16,7 @@ require_once __DIR__ . "/../controller/request-status-controller.php";
     <a href="request-status.php">Request Status</a>
     <a href="access-pass.php">Access Pass</a>
     <a href="request-history.php">Request History</a>
-<a href="auth/logout.php">Logout</a>
+    <a href="auth/logout.php">Logout</a>
 </div>
 
 <div class="main">
@@ -37,13 +37,13 @@ require_once __DIR__ . "/../controller/request-status-controller.php";
                         <tr>
                             <td><?= htmlspecialchars($row["zone_name"]) ?></td>
                             <td><?= htmlspecialchars($row["status"]) ?></td>
-                            <td><?= htmlspecialchars($row["officer_remarks"] ?? "—") ?></td>
+                            <td><?= htmlspecialchars($row["remarks"] ?? "—") ?></td>
                             <td>
                                 <?php if (strtolower($row["status"]) === "pending"): ?>
                                     <form method="post" style="margin:0;"
                                           onsubmit="return confirm('Cancel this request?');">
                                         <input type="hidden" name="request_id"
-                                               value="<?= (int)$row["request_id"] ?>">
+                                               value="<?= (int)$row["id"] ?>">
                                         <button type="submit">Cancel</button>
                                     </form>
                                 <?php else: ?>

@@ -8,11 +8,12 @@ class RequestStatusModel {
         $conn = $db->openConnection();
 
         $stmt = $conn->prepare(
-            "SELECT request_id, zone_name, status, officer_remarks
+            "SELECT id, zone_name, status, remarks
              FROM zone_access_requests
              WHERE employee_email = ?
-             ORDER BY request_id DESC"
+             ORDER BY id DESC"
         );
+
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -34,10 +35,11 @@ class RequestStatusModel {
 
         $stmt = $conn->prepare(
             "DELETE FROM zone_access_requests
-             WHERE request_id = ?
+             WHERE id = ?
                AND employee_email = ?
                AND status = 'pending'"
         );
+
         $stmt->bind_param("is", $requestId, $email);
         $stmt->execute();
 
@@ -46,30 +48,29 @@ class RequestStatusModel {
     }
 
     public function getHistoryByEmployeeEmail($email) {
-    $db = new db_connection();
-    $conn = $db->openConnection();
+        $db = new db_connection();
+        $conn = $db->openConnection();
 
-    $stmt = $conn->prepare(
-        "SELECT zone_name, visit_purpose, status, requested_at
-         FROM zone_access_requests
-         WHERE employee_email = ?
-           AND status != 'pending'
-         ORDER BY requested_at DESC"
-    );
+        $stmt = $conn->prepare(
+            "SELECT zone_name, visit_purpose, status, created_at
+             FROM zone_access_requests
+             WHERE employee_email = ?
+               AND status != 'pending'
+             ORDER BY created_at DESC"
+        );
 
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    $data = [];
-    while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        $stmt->close();
+        $db->closeConnection($conn);
+
+        return $data;
     }
-
-    $stmt->close();
-    $db->closeConnection($conn);
-
-    return $data;
-}
-
 }

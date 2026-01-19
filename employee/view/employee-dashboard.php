@@ -1,17 +1,7 @@
 <?php
-
-session_start();
-
-if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
-    header("Location: ../../auth/login.php");
-    exit;
-}
-
-
-$id = $_SESSION["id"];
-$name  = $_SESSION["name"];
-$email = $_SESSION["email"];
+require_once __DIR__ . "/../controller/employee-dashboard-controller.php";
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,10 +26,10 @@ $email = $_SESSION["email"];
             <p><strong>Name:</strong> <?= htmlspecialchars($name) ?></p>
             <p><strong>Email:</strong> <?= htmlspecialchars($email) ?></p>
 
-            <p><strong>Total Requests:</strong> 6</p>
-            <p><strong>Pending:</strong> 2</p>
-            <p><strong>Approved:</strong> 3</p>
-            <p><strong>Rejected:</strong> 1</p>
+            <p><strong>Total Requests:</strong> <?= $total ?></p>
+            <p><strong>Pending:</strong> <?= $pending ?></p>
+            <p><strong>Approved:</strong> <?= $approved ?></p>
+            <p><strong>Rejected:</strong> <?= $rejected ?></p>
         </div>
     </div>
 </div>
