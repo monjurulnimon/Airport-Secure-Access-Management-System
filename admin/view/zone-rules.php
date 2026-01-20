@@ -98,26 +98,8 @@ $rules = $model->getAllRules();
 
 </div>
 
-<!-- ===== JS VALIDATION ===== -->
-<script>
-function validateRule() {
-    const rule = document.getElementById("rule_text").value.trim();
-    const error = document.getElementById("ruleError");
+<script src="../controller/zone_rule.js"></script>
 
-    if (rule === "") {
-        error.innerText = "Rule cannot be empty";
-        return false;
-    }
-
-    if (rule.length < 5) {
-        error.innerText = "Rule must be at least 5 characters";
-        return false;
-    }
-
-    error.innerText = "";
-    return true;
-}
-</script>
 
 </body>
 </html>

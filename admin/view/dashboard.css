@@ -159,3 +159,20 @@ td {
     font-size: 13px;
     word-break: break-word;
 }
+
+/* ===== SIDEBAR LOGOUT ===== */
+.sidebar-divider {
+    margin: 15px 10px;
+    border: 0;
+    border-top: 1px solid #445;
+}
+
+.logout-link {
+    color: #ffb3b3;
+}
+
+.logout-link:hover {
+    background-color: #3a4a52;
+    color: #ffcccc;
+}
+

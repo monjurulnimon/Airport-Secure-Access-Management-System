@@ -1,14 +1,3 @@
-<?php
-require_once "../model/db_connection.php";
-
-$db = new db_connection();
-$conn = $db->openConnection();
-
-/* Fetch employees */
-$sql = "SELECT id, name, email FROM employees";
-$result = $conn->query($sql);
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +6,6 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-<!-- ===== SIDEBAR ===== -->
 <div class="sidebar">
     <h2>Admin</h2>
 
@@ -34,12 +22,18 @@ $result = $conn->query($sql);
     <a href="system-monitoring.php" class="menu">System Monitoring</a>
 </div>
 
-<!-- ===== MAIN ===== -->
 <div class="main">
     <div class="panel">
         <h3>All Employees</h3>
 
         <div class="panel-body">
+
+            <!-- 🔍 SEARCH BAR -->
+            <input type="text"
+                   id="employeeSearch"
+                   placeholder="Search employee by name or email..."
+                   style="width:300px; padding:6px; margin-bottom:10px;">
+
             <table>
                 <thead>
                     <tr>
@@ -49,36 +43,19 @@ $result = $conn->query($sql);
                     </tr>
                 </thead>
 
-                <tbody>
-                <?php if ($result && $result->num_rows > 0): ?>
-                    <?php while ($row = $result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row["name"]) ?></td>
-                            <td><?= htmlspecialchars($row["email"]) ?></td>
-                            <td>
-                                <form method="POST"
-                                      action="../controller/employee_controller.php"
-                                      onsubmit="return confirm('Are you sure you want to delete this employee?');">
-                                    <input type="hidden" name="employee_id" value="<?= $row["id"] ?>">
-                                    <button type="submit" name="deleteEmployee">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else: ?>
+                <tbody id="employeeTableBody">
                     <tr>
-                        <td colspan="3">No employees found</td>
+                        <td colspan="3">Type to search employees...</td>
                     </tr>
-                <?php endif; ?>
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
 
+<!-- AJAX SCRIPT -->
+<script src="../controller/employee_search.js"></script>
+
 </body>
 </html>
-
-<?php
-$db->closeConnection($conn);
-?>

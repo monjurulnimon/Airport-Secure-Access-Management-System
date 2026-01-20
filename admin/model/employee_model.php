@@ -11,6 +11,22 @@ class EmployeeModel {
         return $conn->query($sql);
     }
 
+    /* 🔍 AJAX SEARCH */
+    public function searchEmployees($keyword) {
+        $db = new db_connection();
+        $conn = $db->openConnection();
+
+        $sql = "SELECT id, name, email FROM employees 
+                WHERE name LIKE ? OR email LIKE ?";
+        $stmt = $conn->prepare($sql);
+
+        $search = "%" . $keyword . "%";
+        $stmt->bind_param("ss", $search, $search);
+        $stmt->execute();
+
+        return $stmt->get_result();
+    }
+
     public function deleteEmployee($id) {
         $db = new db_connection();
         $conn = $db->openConnection();

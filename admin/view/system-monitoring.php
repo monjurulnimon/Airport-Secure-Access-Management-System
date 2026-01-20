@@ -10,17 +10,6 @@ $logs = $model->getAllAccessLogs();
 <head>
     <title>System Monitoring</title>
     <link rel="stylesheet" href="dashboard.css">
-    <style>
-        .badge {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #fff;
-        }
-        .approved { background: #28a745; }
-        .pending { background: #ffc107; color:#000; }
-        .rejected { background: #dc3545; }
-    </style>
 </head>
 <body>
 
@@ -67,16 +56,7 @@ $logs = $model->getAllAccessLogs();
                             <td><?= htmlspecialchars($row["visit_purpose"]) ?></td>
                             <td><?= $row["visit_date"] ?></td>
                             <td><?= $row["duration_hours"] ?> hrs</td>
-                            <td>
-                                <?php
-                                    $status = $row["status"];
-                                    $class = $status === "approved" ? "approved" :
-                                             ($status === "rejected" ? "rejected" : "pending");
-                                ?>
-                                <span class="badge <?= $class ?>">
-                                    <?= ucfirst($status) ?>
-                                </span>
-                            </td>
+                            <td><?= htmlspecialchars(ucfirst($row["status"])) ?></td>
                             <td><?= $row["remarks"] ?? "-" ?></td>
                             <td><?= $row["created_at"] ?></td>
                         </tr>

@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+?>
+
+<?php
 require_once "../model/dashboard_model.php";
 
 $model = new DashboardModel();
@@ -36,6 +41,10 @@ $rejected  = $model->countRequestsByStatus("rejected");
     <a href="zone-rules.php" class="submenu">Zone Rules</a>
 
     <a href="system-monitoring.php" class="menu">System Monitoring</a>
+
+    <hr class="sidebar-divider">
+    <a href="../controller/admin_logout.php" class="menu logout-link">Logout</a>
+
 </div>
 
 <div class="main">
@@ -70,6 +79,7 @@ $rejected  = $model->countRequestsByStatus("rejected");
         <h4>Rejected Access</h4>
         <span><?php echo $rejected; ?></span>
     </div>
+
 </div>
 
 </body>
