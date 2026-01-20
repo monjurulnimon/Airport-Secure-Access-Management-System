@@ -62,6 +62,20 @@ class db_connection {
 
         return $stmt->execute();
     }
+    public function loginSecurityOfficer($conn, $email, $pass) {
+
+    $stmt = $conn->prepare(
+        "SELECT id, email, profile
+         FROM security_officers
+         WHERE email = ? AND pass = ?"
+    );
+
+    $stmt->bind_param("ss", $email, $pass);
+    $stmt->execute();
+
+    return $stmt->get_result();
+}
+
 
     /* ================= VISITOR LOGIN ================= */
 

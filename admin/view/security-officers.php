@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once "../model/security_officer_model.php";
 
 $model = new SecurityOfficerModel();
@@ -39,21 +41,29 @@ $officers = $model->getAllOfficers();
         <div class="panel-body">
 
             <?php if (isset($_GET["error"])) { ?>
-                <p style="color:red;">Username and Password are required.</p>
+                <p style="color:red;">Email and Password are required.</p>
             <?php } ?>
 
             <?php if (isset($_GET["success"]) && $_GET["success"] === "created") { ?>
                 <p style="color:green;">Security officer created successfully.</p>
             <?php } ?>
 
-            <form method="POST" action="../controller/security_officer_controller.php">
-                <label>Username</label>
-                <input type="text" name="username" required>
+            <form method="POST"
+                  action="../controller/security_officer_controller.php"
+                  enctype="multipart/form-data">
+
+                <label>Email</label>
+                <input type="email" name="email" required>
 
                 <label>Password</label>
-                <input type="password" name="password" required>
+                <input type="password" name="pass" required>
 
-                <button type="submit" name="createOfficer">Create Officer</button>
+                <label>Profile Picture</label>
+                <input type="file" name="profile" accept="image/*">
+
+                <button type="submit" name="createOfficer">
+                    Create Officer
+                </button>
             </form>
 
         </div>
@@ -66,21 +76,32 @@ $officers = $model->getAllOfficers();
 
             <table>
                 <tr>
-                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Profile</th>
                     <th>Action</th>
                 </tr>
 
                 <?php if ($officers && $officers->num_rows > 0) { ?>
                     <?php while ($row = $officers->fetch_assoc()) { ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row["username"]); ?></td>
+                            <td><?php echo htmlspecialchars($row["email"]); ?></td>
+
+                            <td>
+                                <img src="/Airport-Secure-Access-Management-System/admin/picture/<?php
+                                    echo htmlspecialchars($row["profile"] ?? 'default.png');
+                                ?>"
+                                width="40" height="40"
+                                style="border-radius:50%;">
+                            </td>
+
                             <td>
                                 <form method="POST"
                                       action="../controller/security_officer_controller.php"
                                       onsubmit="return confirm('Are you sure you want to delete this officer?');"
                                       style="display:inline;">
 
-                                    <input type="hidden" name="officer_id"
+                                    <input type="hidden"
+                                           name="officer_id"
                                            value="<?php echo $row['id']; ?>">
 
                                     <button type="submit" name="deleteOfficer">
@@ -93,7 +114,7 @@ $officers = $model->getAllOfficers();
                     <?php } ?>
                 <?php } else { ?>
                     <tr>
-                        <td colspan="2">No security officers found</td>
+                        <td colspan="3">No security officers found</td>
                     </tr>
                 <?php } ?>
 

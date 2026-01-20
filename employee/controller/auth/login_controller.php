@@ -49,6 +49,7 @@ $ADMIN_PASS  = "admin123";
 //security officer mail
 $SECURITY_EMAIL = "security@gmail.com";
 $SECURITY_PASS  = "security123";
+$securityResult = $db->loginSecurityOfficer($conn, $email, $password);
 
 
 if ($email === $ADMIN_EMAIL && $password === $ADMIN_PASS) {
@@ -60,16 +61,23 @@ if ($email === $ADMIN_EMAIL && $password === $ADMIN_PASS) {
     header("Location: ../../../admin/view/dashboard.php");
     exit;
 }
+/* SECURITY OFFICER LOGIN */
+else if ($securityResult && $securityResult->num_rows === 1) {
 
-else if($email === $SECURITY_EMAIL && $password === $SECURITY_PASS) {
+    $security = $securityResult->fetch_assoc();
 
-    $_SESSION["email"] = $SECURITY_EMAIL;
+    $_SESSION["email"] = $security["email"];
     $_SESSION["role"] = "security";
     $_SESSION["isLoggedIn"] = true;
+    $_SESSION["security_id"] = $security["id"];
+    $_SESSION["profile"] = $security["profile"];
+
+    $db->closeConnection($conn);
 
     header("Location: ../../../officer/view/officer-dashboard.php");
     exit;
 }
+
 else if ($result && $result->num_rows > 0) {
 
     $data = $result->fetch_assoc();   // STANDARD KEPT

@@ -3,30 +3,35 @@ require_once __DIR__ . "/db_connection.php";
 
 class SecurityOfficerModel {
 
-    // CREATE OFFICER
-    public function createOfficer($username, $password) {
+    /* ================= CREATE OFFICER ================= */
+    public function createOfficer($email, $pass, $profile = "default.png") {
         $db = new db_connection();
         $conn = $db->openConnection();
 
-        $sql = "INSERT INTO security_officers (username, password)
-                VALUES ('$username', '$password')";
+        $stmt = $conn->prepare(
+            "INSERT INTO security_officers (email, pass, profile)
+             VALUES (?, ?, ?)"
+        );
 
-        $result = $conn->query($sql);
+        $stmt->bind_param("sss", $email, $pass, $profile);
+        $result = $stmt->execute();
+
+        $stmt->close();
         $db->closeConnection($conn);
 
         return $result;
     }
 
 
-    // CHECK USERNAME EXISTS
-    public function usernameExists($username) {
+    /* ================= CHECK EMAIL EXISTS ================= */
+    public function emailExists($email) {
         $db = new db_connection();
         $conn = $db->openConnection();
 
         $stmt = $conn->prepare(
-            "SELECT id FROM security_officers WHERE username = ?"
+            "SELECT id FROM security_officers WHERE email = ?"
         );
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
@@ -34,22 +39,49 @@ class SecurityOfficerModel {
 
         $stmt->close();
         $db->closeConnection($conn);
+
         return $exists;
     }
 
-    // FETCH ALL OFFICERS
-    public function getAllOfficers() {
+
+    /* ================= FETCH ALL OFFICERS ================= */
+   public function getAllOfficers() {
+    $db = new db_connection();
+    $conn = $db->openConnection();
+
+    $sql = "SELECT id, email, profile FROM security_officers";
+    $result = $conn->query($sql);
+
+    $db->closeConnection($conn);
+    return $result;
+}
+
+
+
+    /* ================= FETCH SINGLE OFFICER ================= */
+    public function getOfficerByEmail($email) {
         $db = new db_connection();
         $conn = $db->openConnection();
 
-        $sql = "SELECT id, username FROM security_officers";
-        $result = $conn->query($sql);
+        $stmt = $conn->prepare(
+            "SELECT id, email, pass, profile
+             FROM security_officers
+             WHERE email = ?"
+        );
 
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_assoc();
+
+        $stmt->close();
         $db->closeConnection($conn);
-        return $result;
+
+        return $data;
     }
 
-    // DELETE OFFICER
+
+    /* ================= DELETE OFFICER ================= */
     public function deleteOfficer($id) {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -62,6 +94,7 @@ class SecurityOfficerModel {
 
         $stmt->close();
         $db->closeConnection($conn);
+
         return $result;
     }
 }
