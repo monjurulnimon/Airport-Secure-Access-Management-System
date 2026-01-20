@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 20, 2026 at 02:59 PM
+-- Generation Time: Jan 20, 2026 at 07:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -92,9 +92,13 @@ CREATE TABLE `zones` (
 --
 
 INSERT INTO `zones` (`id`, `zone_name`, `status`, `created_at`) VALUES
-(1, 'qqqqqqqqqq', 'active', '2026-01-16 10:36:19'),
-(2, 'eeeeeeeeeee', 'active', '2026-01-16 10:36:23'),
-(3, '<script>alert(\"QWER\")</script>', 'active', '2026-01-16 13:48:01');
+(8, 'Hangar Area', 'active', '2026-01-20 17:47:41'),
+(9, 'Air Traffic Control (ATC) Room', 'active', '2026-01-20 17:48:04'),
+(10, 'Security Control Room', 'active', '2026-01-20 17:48:55'),
+(11, 'Fire Control Station', 'active', '2026-01-20 17:49:23'),
+(12, 'Power Distribution Room', 'active', '2026-01-20 17:49:51'),
+(13, 'Cargo Handling Area', 'active', '2026-01-20 17:50:21'),
+(14, 'Fuel Storage Area', 'active', '2026-01-20 17:51:23');
 
 -- --------------------------------------------------------
 
@@ -142,7 +146,10 @@ CREATE TABLE `zone_rules` (
 --
 
 INSERT INTO `zone_rules` (`id`, `rule_text`, `created_at`) VALUES
-(2, 'qqqqqqqqqqqqqqqq1111111111', '2026-01-16 10:37:02');
+(3, 'Do not remain inside the zone beyond the approved duration.', '2026-01-20 17:43:25'),
+(4, 'Report any security incident or irregular activity without delay.', '2026-01-20 17:43:44'),
+(5, 'Comply with all safety and operational guidelines within the zone.', '2026-01-20 17:44:15'),
+(6, 'Do not share your access pass with anyone.', '2026-01-20 17:44:55');
 
 --
 -- Indexes for dumped tables
@@ -194,13 +201,13 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `security_officers`
 --
 ALTER TABLE `security_officers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `zones`
 --
 ALTER TABLE `zones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `zone_access_requests`
@@ -212,7 +219,7 @@ ALTER TABLE `zone_access_requests`
 -- AUTO_INCREMENT for table `zone_rules`
 --
 ALTER TABLE `zone_rules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
