@@ -2,6 +2,8 @@
 
 class db_connection {
 
+    /* ================= DATABASE CONNECTION ================= */
+
     function openConnection() {
         $db_host = "localhost";
         $db_user = "root";
@@ -17,10 +19,11 @@ class db_connection {
         return $connection;
     }
 
-    // Visitor Registration (INSERT)
-    function registerVisitor(
-        $connection,
-        $tableName,
+    /* ================= VISITOR REGISTRATION ================= */
+
+    public function registerVisitor(
+        $conn,
+        $table,
         $name,
         $email,
         $password,
@@ -29,28 +32,39 @@ class db_connection {
         $city,
         $country,
         $designation,
-        $visitor_type
+        $visitor_type,
+        $profile_image
     ) {
+        $sql = "INSERT INTO $table
+        (name, email, password, contact, address, city, country, designation, visitor_type, profile_image)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        $sql = "INSERT INTO " . $tableName . " 
-        (name, email, password, contact, address, city, country, designation, visitor_type) 
-        VALUES (
-            '" . $name . "',
-            '" . $email . "',
-            '" . $password . "',
-            '" . $contact . "',
-            '" . $address . "',
-            '" . $city . "',
-            '" . $country . "',
-            '" . $designation . "',
-            '" . $visitor_type . "'
-        )";
+        $stmt = $conn->prepare($sql);
 
-        $result = $connection->query($sql);
-        return $result;
+        if (!$stmt) {
+            die("Prepare failed: " . $conn->error);
+        }
+
+
+        $stmt->bind_param(
+            "ssssssssss",
+            $name,
+            $email,
+            $password,
+            $contact,
+            $address,
+            $city,
+            $country,
+            $designation,
+            $visitor_type,
+            $profile_image
+        );
+
+        return $stmt->execute();
     }
-           
-    // Visitor Login
+
+    /* ================= VISITOR LOGIN ================= */
+
     function loginVisitor($connection, $tableName, $email, $password) {
 
         $sql = "SELECT * FROM " . $tableName . " 
@@ -60,6 +74,8 @@ class db_connection {
         $result = $connection->query($sql);
         return $result;
     }
+
+    /* ================= CLOSE CONNECTION ================= */
 
     function closeConnection($connection) {
         $connection->close();

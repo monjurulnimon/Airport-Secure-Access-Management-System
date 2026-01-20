@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$_SESSION['contact'] = $_POST['contact'] ?? '';
-$_SESSION['address'] = $_POST['address'] ?? '';
-$_SESSION['city'] = $_POST['city'] ?? '';
-$_SESSION['country'] = $_POST['country'] ?? '';
+$_SESSION['contact']  = $_POST['contact']  ?? '';
+$_SESSION['address']  = $_POST['address']  ?? '';
+$_SESSION['city']     = $_POST['city']     ?? '';
+$_SESSION['country']  = $_POST['country']  ?? '';
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,12 +18,15 @@ $_SESSION['country'] = $_POST['country'] ?? '';
 
     <h2>Visitor Registration – Professional</h2>
 
-    <div id="customAlert">
+    <div id="customAlert" style="display:none;">
         <span id="alertMessage"></span>
     </div>
 
     <form 
-        method="post" action="register_handler.php" onsubmit="return validateStep3();"
+        method="post"
+        action="register_handler.php"
+        enctype="multipart/form-data"
+        onsubmit="return validateStep3();"
     >
 
         <label>Designation</label>
@@ -40,13 +43,17 @@ $_SESSION['country'] = $_POST['country'] ?? '';
             <option value="guest">Guest</option>
         </select>
 
+        <label>Profile Picture</label>
+        <input type="file" name="profile_image" accept="image/*">
+
         <div class="button-group">
             <button type="button" onclick="history.back()">Previous</button>
             <button type="submit">Register</button>
         </div>
 
     </form>
-        <p>
+
+    <p>
         Already have an account?
         <a href="login.php">Login here</a>
     </p>
@@ -54,7 +61,6 @@ $_SESSION['country'] = $_POST['country'] ?? '';
 </div>
 
 <script src="/Airport-Secure-Access-Management-System/employee/controller/auth/reg_controller3.js"></script>
-
 
 </body>
 </html>

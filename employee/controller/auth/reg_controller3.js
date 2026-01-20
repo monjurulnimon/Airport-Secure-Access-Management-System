@@ -19,6 +19,7 @@ function validateStep3() {
     const designation = document.querySelector('[name="designation"]').value.trim();
     const organization = document.querySelector('[name="organization"]').value.trim();
     const visitorType = document.querySelector('[name="visitor_type"]').value;
+    const profileImage = document.querySelector('[name="profile_image"]').files[0];
 
     if (!designation) {
         showAlert("Designation is required.");
@@ -35,8 +36,21 @@ function validateStep3() {
         return false;
     }
 
-    // Optional debug (safe to remove later)
-    console.log("Step 3 validated successfully");
+    if (!profileImage) {
+        showAlert("Profile picture is required.");
+        return false;
+    }
 
-    return true; // allow form submission
+    const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+    if (!allowedTypes.includes(profileImage.type)) {
+        showAlert("Only JPG and PNG images are allowed.");
+        return false;
+    }
+
+    if (profileImage.size > 2 * 1024 * 1024) {
+        showAlert("Profile picture must be less than 2MB.");
+        return false;
+    }
+
+    return true;
 }
