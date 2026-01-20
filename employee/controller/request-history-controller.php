@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . "/../model/request-status-model.php";
+require_once __DIR__ . "/../model/request-history-model.php";
 
 /* Auth check */
 if (
@@ -14,5 +14,5 @@ if (
 
 $email = $_SESSION["email"];
 
-$model = new RequestStatusModel();
+$model = new RequestHistoryModel();
 $history = $model->getHistoryByEmployeeEmail($email);
