@@ -79,7 +79,7 @@ $rules = $model->getAllRules();
                                 <form method="POST"
                                       action="../controller/zone_rule_controller.php"
                                       onsubmit="return confirm('Delete this rule?');">
-                                    <input type="hidden" name="rule_id" value="<?= $row["id"] ?>">
+                                    <input type="hidden" name="rule_id" value="<?= htmlspecialchars($row["id"]) ?>">
                                     <button type="submit" name="deleteRule">Delete</button>
                                 </form>
                             </td>

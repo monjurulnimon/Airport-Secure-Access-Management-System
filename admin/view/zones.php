@@ -68,7 +68,7 @@ $zones = $model->getAllZones();
                                 <form method="POST"
                                       action="../controller/zone_controller.php"
                                       onsubmit="return confirm('Delete this zone permanently?');">
-                                    <input type="hidden" name="zone_id" value="<?= $row["id"] ?>">
+                                    <input type="hidden" name="zone_id" value="<?= htmlspecialchars($row["id"]) ?>">
                                     <button type="submit" name="deleteZone">Delete</button>
                                 </form>
                             </td>

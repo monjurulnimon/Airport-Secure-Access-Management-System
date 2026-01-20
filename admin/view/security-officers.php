@@ -15,7 +15,6 @@ $officers = $model->getAllOfficers();
 </head>
 <body>
 
-<!-- ===== SIDEBAR ===== -->
 <div class="sidebar">
     <h2>Admin</h2>
 
@@ -32,21 +31,19 @@ $officers = $model->getAllOfficers();
     <a href="system-monitoring.php" class="menu">System Monitoring</a>
 </div>
 
-<!-- ===== MAIN CONTENT ===== -->
 <div class="main">
 
-    <!-- CREATE SECURITY OFFICER -->
     <div class="panel">
         <h3>Create Security Officer</h3>
         <div class="panel-body">
 
-            <?php if (isset($_GET["error"])) { ?>
-                <p style="color:red;">Email and Password are required.</p>
-            <?php } ?>
+            <?php if (isset($_GET["error"])): ?>
+                <p class="error-msg">Email and Password are required.</p>
+            <?php endif; ?>
 
-            <?php if (isset($_GET["success"]) && $_GET["success"] === "created") { ?>
-                <p style="color:green;">Security officer created successfully.</p>
-            <?php } ?>
+            <?php if (isset($_GET["success"]) && $_GET["success"] === "created"): ?>
+                <p class="success-msg">Security officer created successfully.</p>
+            <?php endif; ?>
 
             <form method="POST"
                   action="../controller/security_officer_controller.php"
@@ -61,15 +58,12 @@ $officers = $model->getAllOfficers();
                 <label>Profile Picture</label>
                 <input type="file" name="profile" accept="image/*">
 
-                <button type="submit" name="createOfficer">
-                    Create Officer
-                </button>
+                <button type="submit" name="createOfficer">Create Officer</button>
             </form>
 
         </div>
     </div>
 
-    <!-- EXISTING SECURITY OFFICERS -->
     <div class="panel">
         <h3>Existing Security Officers</h3>
         <div class="panel-body">
@@ -81,42 +75,38 @@ $officers = $model->getAllOfficers();
                     <th>Action</th>
                 </tr>
 
-                <?php if ($officers && $officers->num_rows > 0) { ?>
-                    <?php while ($row = $officers->fetch_assoc()) { ?>
+                <?php if ($officers && $officers->num_rows > 0): ?>
+                    <?php while ($row = $officers->fetch_assoc()): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row["email"]); ?></td>
+                            <td><?= htmlspecialchars($row["email"]) ?></td>
 
                             <td>
-                                <img src="/Airport-Secure-Access-Management-System/admin/picture/<?php
-                                    echo htmlspecialchars($row["profile"] ?? 'default.png');
-                                ?>"
-                                width="40" height="40"
-                                style="border-radius:50%;">
+                                <img src="/Airport-Secure-Access-Management-System/admin/picture/<?= htmlspecialchars($row["profile"] ?? "default.png") ?>"
+                                     width="40" height="40"
+                                     style="border-radius:50%;">
                             </td>
 
                             <td>
                                 <form method="POST"
                                       action="../controller/security_officer_controller.php"
-                                      onsubmit="return confirm('Are you sure you want to delete this officer?');"
-                                      style="display:inline;">
+                                      onsubmit="return confirm('Are you sure you want to delete this officer?');">
 
                                     <input type="hidden"
                                            name="officer_id"
-                                           value="<?php echo $row['id']; ?>">
+                                           value="<?= htmlspecialchars($row["id"]) ?>">
 
                                     <button type="submit" name="deleteOfficer">
                                         Delete
                                     </button>
-
                                 </form>
                             </td>
                         </tr>
-                    <?php } ?>
-                <?php } else { ?>
+                    <?php endwhile; ?>
+                <?php else: ?>
                     <tr>
                         <td colspan="3">No security officers found</td>
                     </tr>
-                <?php } ?>
+                <?php endif; ?>
 
             </table>
 
