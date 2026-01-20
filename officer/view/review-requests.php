@@ -46,7 +46,7 @@ $result = mysqli_query($conn, $query);
             </table>
 
             <form method="POST" action="process-request.php">
-                <input type="hidden" name="request_id"
+               <input type="hidden" name="request_id" value="<?php echo $row['id']; ?>">
                        value="<?= $row['request_id'] ?>">
 
                 <strong>Officer Remarks:</strong><br>
