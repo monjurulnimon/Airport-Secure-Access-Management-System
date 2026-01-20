@@ -1,10 +1,20 @@
 <?php
 session_start();
 
+/* Session protection */
 if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
     header("Location: ../../auth/login.php");
     exit;
 }
+
+/* Load model */
+require_once "../model/zone_model.php";
+
+$zoneModel = new ZoneModel();
+
+/* Fetch data */
+$zones = $zoneModel->getActiveZones();
+$rules = $zoneModel->getAllRules();
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,47 +24,61 @@ if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
 </head>
 <body>
 
+<!-- ===== TOP NAV ===== -->
 <div class="top-nav">
     <a href="employee-dashboard.php">Dashboard</a>
     <a href="request-access.php">Request Access</a>
     <a href="request-status.php">Request Status</a>
     <a href="access-pass.php">Access Pass</a>
     <a href="request-history.php">Request History</a>
-<a href="auth/logout.php">Logout</a>
+    <a href="auth/logout.php">Logout</a>
 </div>
 
+<!-- ===== MAIN CONTENT ===== -->
 <div class="main">
     <div class="panel">
         <h3>Temporary Access Request</h3>
 
-        <!-- ✅ FORM START -->
+        <!-- ===== FORM START ===== -->
         <form method="POST" action="../controller/request-access-controller.php">
             <div class="panel-body">
 
+                <!-- ZONE DROPDOWN -->
                 <label>Select Access Zone</label>
                 <select name="zone" required>
                     <option value="">-- Select Zone --</option>
-                    <option value="Terminal A">Terminal A</option>
-                    <option value="Control Room">Control Room</option>
-                    <option value="Cargo Area">Cargo Area</option>
+                    <?php if ($zones && $zones->num_rows > 0) { ?>
+                        <?php while ($zone = $zones->fetch_assoc()) { ?>
+                            <option value="<?= htmlspecialchars($zone['zone_name']) ?>">
+                                <?= htmlspecialchars($zone['zone_name']) ?>
+                            </option>
+                        <?php } ?>
+                    <?php } ?>
                 </select>
 
+                <!-- PURPOSE -->
                 <label>Visit Purpose</label>
                 <textarea name="purpose" rows="3" required></textarea>
 
+                <!-- DATE -->
                 <label>Date of Visit</label>
                 <input type="date" name="visit_date" required>
 
+                <!-- DURATION -->
                 <label>Duration (hours)</label>
                 <input type="number" name="duration" min="1" required>
 
+                <!-- RULES -->
                 <div class="rules-section">
                     <h4>Airport Access Rules</h4>
                     <ul>
-                        <li>Access is allowed only for the approved zone.</li>
-                        <li>Pass must be shown at security checkpoints.</li>
-                        <li>Access expires automatically after approved duration.</li>
-                        <li>Violation of rules may result in permanent restriction.</li>
+                        <?php if ($rules && $rules->num_rows > 0) { ?>
+                            <?php while ($rule = $rules->fetch_assoc()) { ?>
+                                <li><?= htmlspecialchars($rule['rule_text']) ?></li>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <li>No rules defined.</li>
+                        <?php } ?>
                     </ul>
 
                     <div class="agree-wrapper">
@@ -65,10 +89,12 @@ if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
                     </div>
                 </div>
 
+                <!-- SUBMIT -->
                 <button type="submit">Submit</button>
 
             </div>
         </form>
+        <!-- ===== FORM END ===== -->
 
     </div>
 </div>

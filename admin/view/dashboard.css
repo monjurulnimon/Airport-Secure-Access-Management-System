@@ -41,7 +41,8 @@ body {
 .menu {
     display: block;
     padding: 10px 15px;
-    font-size: 15px; /* FIXED */
+    font-size: 15px;
+    /* FIXED */
     font-weight: bold;
     background-color: #2f3e46;
 }
@@ -73,8 +74,10 @@ body {
     padding: 18px;
     margin-bottom: 18px;
     width: 360px;
-    border-radius: 6px;                  /* ADDED */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* ADDED */
+    border-radius: 6px;
+    /* ADDED */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    /* ADDED */
 }
 
 /* Card title */
@@ -88,7 +91,8 @@ body {
 .dash-card span {
     display: block;
     margin-top: 8px;
-    font-size: 26px;     /* IMPROVED */
+    font-size: 26px;
+    /* IMPROVED */
     font-weight: bold;
 }
 
@@ -134,7 +138,8 @@ button {
     display: block;
     margin-top: 10px;
     padding: 6px 12px;
-    cursor: pointer; /* ADDED */
+    cursor: pointer;
+    /* ADDED */
 }
 
 /* ===============================
@@ -160,19 +165,4 @@ td {
     word-break: break-word;
 }
 
-/* ===== SIDEBAR LOGOUT ===== */
-.sidebar-divider {
-    margin: 15px 10px;
-    border: 0;
-    border-top: 1px solid #445;
-}
-
-.logout-link {
-    color: #ffb3b3;
-}
-
-.logout-link:hover {
-    background-color: #3a4a52;
-    color: #ffcccc;
-}
 

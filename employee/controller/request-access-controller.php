@@ -4,6 +4,12 @@ ini_set('display_errors', 1);
 
 session_start();
 require_once "../model/db_connection.php";
+require_once "../model/zone_model.php";
+
+$zoneModel = new ZoneModel();
+$zones = $zoneModel->getActiveZones();
+$rules = $zoneModel->getAllRules();
+
 
 
 if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
