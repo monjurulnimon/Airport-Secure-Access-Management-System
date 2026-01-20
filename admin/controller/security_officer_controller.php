@@ -16,6 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["createOfficer"])) {
         exit;
     }
 
+    if (strlen($pass) < 6) {
+    header("Location: ../view/security-officers.php?error=shortpass");
+    exit;
+    }
+
     /* CHECK EMAIL EXISTS */
     if ($model->emailExists($email)) {
         header("Location: ../view/security-officers.php?error=exists");
