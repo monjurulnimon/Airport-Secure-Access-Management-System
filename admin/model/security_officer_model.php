@@ -3,7 +3,6 @@ require_once __DIR__ . "/db_connection.php";
 
 class SecurityOfficerModel {
 
-    /* ================= CREATE OFFICER ================= */
     public function createOfficer($email, $pass, $profile = "default.png") {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -23,7 +22,6 @@ class SecurityOfficerModel {
     }
 
 
-    /* ================= CHECK EMAIL EXISTS ================= */
     public function emailExists($email) {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -44,7 +42,6 @@ class SecurityOfficerModel {
     }
 
 
-    /* ================= FETCH ALL OFFICERS ================= */
    public function getAllOfficers() {
     $db = new db_connection();
     $conn = $db->openConnection();
@@ -58,7 +55,6 @@ class SecurityOfficerModel {
 
 
 
-    /* ================= FETCH SINGLE OFFICER ================= */
     public function getOfficerByEmail($email) {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -81,7 +77,6 @@ class SecurityOfficerModel {
     }
 
 
-    /* ================= DELETE OFFICER ================= */
     public function deleteOfficer($id) {
         $db = new db_connection();
         $conn = $db->openConnection();

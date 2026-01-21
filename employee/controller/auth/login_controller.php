@@ -11,7 +11,6 @@ $password = $_POST['password'] ?? '';
 $errors = [];
 $values = [];
 
-/* Validation */
 if (!$email) {
     $errors["email"] = "Email field is required";
 }
@@ -37,7 +36,7 @@ exit;
 
 }
 
-/* Database login */
+
 $db = new db_connection();
 $conn = $db->openConnection();
 
@@ -61,7 +60,7 @@ if ($email === $ADMIN_EMAIL && $password === $ADMIN_PASS) {
     header("Location: ../../../admin/view/dashboard.php");
     exit;
 }
-/* SECURITY OFFICER LOGIN */
+
 else if ($securityResult && $securityResult->num_rows === 1) {
 
     $security = $securityResult->fetch_assoc();

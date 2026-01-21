@@ -3,7 +3,6 @@ require_once "db_connection.php";
 
 class ZoneRuleModel {
 
-    /* CREATE RULE */
     public function createRule($ruleText) {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -15,7 +14,6 @@ class ZoneRuleModel {
         return $result;
     }
 
-    /* FETCH ALL RULES */
     public function getAllRules() {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -26,7 +24,6 @@ class ZoneRuleModel {
         return $result;
     }
 
-    /* HARD DELETE RULE */
     public function deleteRule($id) {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -38,7 +35,6 @@ class ZoneRuleModel {
         return $result;
     }
 
-    /* CHECK RULE EXISTS */
     public function ruleExists($ruleText) {
         $db = new db_connection();
         $conn = $db->openConnection();

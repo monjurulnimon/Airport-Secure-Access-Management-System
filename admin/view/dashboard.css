@@ -1,15 +1,11 @@
-/* ===============================
-   GLOBAL PAGE SETTINGS
-   =============================== */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f6f9;
 }
 
-/* ===============================
-   SIDEBAR
-   =============================== */
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -20,7 +16,6 @@ body {
     color: white;
 }
 
-/* Sidebar title */
 .sidebar h2 {
     margin: 0;
     padding: 15px;
@@ -28,7 +23,6 @@ body {
     font-size: 16px;
 }
 
-/* Sidebar links */
 .sidebar a {
     display: block;
     padding: 10px 15px;
@@ -37,7 +31,6 @@ body {
     font-size: 15px;
 }
 
-/* Main menu items */
 .menu {
     display: block;
     padding: 10px 15px;
@@ -47,7 +40,6 @@ body {
     background-color: #2f3e46;
 }
 
-/* Sub menu items */
 .submenu {
     display: block;
     padding: 8px 25px;
@@ -57,17 +49,13 @@ body {
     color: #cfd8dc;
 }
 
-/* ===============================
-   MAIN CONTENT AREA
-   =============================== */
+
 .main {
     margin-left: 220px;
     padding: 25px;
 }
 
-/* ===============================
-   DASHBOARD CARDS (IMPROVED)
-   =============================== */
+
 .dash-card {
     background-color: #3498db;
     color: white;
@@ -80,14 +68,16 @@ body {
     /* ADDED */
 }
 
-/* Card title */
+
+
 .dash-card h4 {
     margin: 0;
     font-size: 14px;
     font-weight: normal;
 }
 
-/* Card number */
+
+
 .dash-card span {
     display: block;
     margin-top: 8px;
@@ -96,16 +86,13 @@ body {
     font-weight: bold;
 }
 
-/* ===============================
-   PANELS (FORMS & TABLE SECTIONS)
-   =============================== */
+
 .panel {
     background-color: white;
     border: 1px solid #ddd;
     margin-bottom: 20px;
 }
 
-/* Panel heading */
 .panel h3 {
     margin: 0;
     padding: 12px;
@@ -113,14 +100,11 @@ body {
     font-size: 15px;
 }
 
-/* Panel content */
 .panel-body {
     padding: 12px;
 }
 
-/* ===============================
-   FORMS
-   =============================== */
+
 label {
     display: block;
     margin-top: 10px;
@@ -142,9 +126,8 @@ button {
     /* ADDED */
 }
 
-/* ===============================
-   TABLES
-   =============================== */
+
+
 table {
     width: 100%;
     border-collapse: collapse;

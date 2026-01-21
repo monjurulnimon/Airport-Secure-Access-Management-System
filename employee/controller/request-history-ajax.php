@@ -15,7 +15,6 @@ $keyword = $_GET["q"] ?? "";
 $model = new RequestHistoryModel();
 $results = $model->searchHistory($email, $keyword);
 
-/* Return HTML rows */
 if (!empty($results)) {
     foreach ($results as $row) {
         echo "<tr>

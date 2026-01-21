@@ -3,12 +3,11 @@ require_once "../model/zone_model.php";
 
 $model = new ZoneModel();
 
-/* CREATE ZONE */
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["createZone"])) {
 
     $zoneName = trim($_POST["zone_name"]);
 
-    if (strlen($zoneName) < 5) {
+    if (strlen($zoneName) < 3) {
         header("Location: ../view/zones.php?error=length");
         exit;
     }
@@ -23,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["createZone"])) {
     exit;
 }
 
-/* HARD DELETE ZONE */
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["deleteZone"])) {
 
     $id = intval($_POST["zone_id"]);

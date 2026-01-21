@@ -2,7 +2,6 @@
 session_start();
 require_once __DIR__ . "/../model/request-history-model.php";
 
-/* Auth check */
 if (
     !isset($_SESSION["isLoggedIn"]) ||
     $_SESSION["isLoggedIn"] !== true ||

@@ -28,7 +28,7 @@
 
         <div class="panel-body">
 
-            <!-- 🔍 SEARCH BAR -->
+            
             <input type="text"
                    id="employeeSearch"
                    placeholder="Search employee by name or email..."
@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<!-- AJAX SCRIPT -->
+
 <script src="../controller/employee_search.js"></script>
 
 </body>

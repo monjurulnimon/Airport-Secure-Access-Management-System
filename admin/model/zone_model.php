@@ -3,7 +3,6 @@ require_once "db_connection.php";
 
 class ZoneModel {
 
-    /* CREATE ZONE */
     public function createZone($zoneName) {
     $db = new db_connection();
     $conn = $db->openConnection();
@@ -17,7 +16,6 @@ class ZoneModel {
     return $result;
 }
 
-    /* FETCH ALL ZONES */
     public function getAllZones() {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -29,7 +27,6 @@ class ZoneModel {
         return $result;
     }
 
-    /* HARD DELETE ZONE */
     public function deleteZone($id) {
         $db = new db_connection();
         $conn = $db->openConnection();
@@ -42,7 +39,6 @@ class ZoneModel {
         return $result;
     }
 
-    /* CHECK ZONE EXISTS */
     public function zoneExists($zoneName) {
         $db = new db_connection();
         $conn = $db->openConnection();

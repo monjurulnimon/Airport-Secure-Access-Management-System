@@ -30,7 +30,7 @@ $rules = $model->getAllRules();
 
 <div class="main">
 
-    <!-- CREATE RULE -->
+    
     <div class="panel">
         <h3>Create Rule</h3>
         <div class="panel-body">
@@ -60,7 +60,7 @@ $rules = $model->getAllRules();
         </div>
     </div>
 
-    <!-- EXISTING RULES -->
+    
     <div class="panel">
         <h3>Existing Rules</h3>
         <div class="panel-body">

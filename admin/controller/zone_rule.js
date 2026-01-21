@@ -7,7 +7,7 @@ function validateRule() {
         return false;
     }
 
-    if (rule.length < 8) {
+    if (rule.length < 5) {
         error.innerText = "Rule must be at least 5 characters";
         return false;
     }

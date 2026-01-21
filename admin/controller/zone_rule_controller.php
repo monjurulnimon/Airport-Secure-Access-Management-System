@@ -3,7 +3,7 @@ require_once "../model/zone_rule_model.php";
 
 $model = new ZoneRuleModel();
 
-/* CREATE RULE */
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["createRule"])) {
 
     $ruleText = trim($_POST["rule_text"]);
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["createRule"])) {
     exit;
 }
 
-/* DELETE RULE */
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["deleteRule"])) {
 
     $id = intval($_POST["rule_id"]);

@@ -17,7 +17,6 @@ class db_connection {
         return $connection;
     }
 
-    // Visitor Registration (INSERT)
     function registerVisitor(
         $connection,
         $tableName,
@@ -50,7 +49,6 @@ class db_connection {
         return $result;
     }
 
-    // Visitor Login
     function loginVisitor($connection, $tableName, $email, $password) {
 
         $sql = "SELECT * FROM " . $tableName . " 

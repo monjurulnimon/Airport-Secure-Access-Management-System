@@ -5,7 +5,6 @@ body {
     color: #333;
 }
 
-/* Top Navigation */
 .top-nav {
     background-color: #eaeaea;
     padding: 12px 20px;
@@ -23,14 +22,14 @@ body {
     text-decoration: underline;
 }
 
-/* Main container */
+
 .main {
     max-width: 950px;
     margin: 25px auto;
     padding: 10px;
 }
 
-/* Panel */
+
 .panel {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -48,7 +47,7 @@ body {
     padding: 15px;
 }
 
-/* Inputs */
+
 label {
     display: block;
     margin-top: 12px;
@@ -66,14 +65,13 @@ textarea {
     resize: vertical;
 }
 
-/* Buttons */
 button {
     margin-top: 15px;
     padding: 8px 15px;
     cursor: pointer;
 }
 
-/* Table */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -90,18 +88,15 @@ th, td {
 th {
     background-color: #f0f0f0;
 }
-/* ===== FIX AGREEMENT CHECKBOX ALIGNMENT ===== */
 .rules-section {
     display: block;
     width: 100%;
 }
-/* BREAK parent flex/grid influence */
 .agree-wrapper {
     display: block;
     width: 100%;
 }
 
-/* Checkbox + text alignment */
 .agree-box {
     display: inline-flex;
     align-items: center;

@@ -42,7 +42,7 @@ require_once __DIR__ . "/../controller/employee-dashboard-controller.php";
 
         <div class="panel-body">
 
-            <!-- PROFILE SECTION -->
+            
             <div class="profile-box">
                 <img src="<?= htmlspecialchars($profileImagePath) ?>" alt="Profile Picture">
                 <div>
@@ -53,7 +53,7 @@ require_once __DIR__ . "/../controller/employee-dashboard-controller.php";
 
             <hr>
 
-            <!-- REQUEST STATS -->
+            
             <p><strong>Total Requests:</strong> <?= $total ?></p>
             <p><strong>Pending:</strong> <?= $pending ?></p>
             <p><strong>Approved:</strong> <?= $approved ?></p>

@@ -11,7 +11,6 @@ class EmployeeModel {
         return $conn->query($sql);
     }
 
-    /* 🔍 AJAX SEARCH */
     public function searchEmployees($keyword) {
         $db = new db_connection();
         $conn = $db->openConnection();

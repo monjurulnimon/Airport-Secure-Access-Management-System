@@ -17,23 +17,23 @@ if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
     exit;
 }
 
-/* Session data */
+
 $name  = $_SESSION["name"];
 $email = $_SESSION["email"];
 
-/* Form data */
+
 $zone      = $_POST["zone"] ?? "";
 $purpose   = $_POST["purpose"] ?? "";
 $visitDate = $_POST["visit_date"] ?? "";
 $duration  = $_POST["duration"] ?? "";
 
-/* Validation */
+
 if (!$zone || !$purpose || !$visitDate || !$duration) {
     header("Location: ../view/request-access.php");
     exit;
 }
 
-/* DB insert */
+
 $db = new db_connection();
 $conn = $db->openConnection();
 
@@ -58,6 +58,6 @@ $stmt->execute();
 $stmt->close();
 $db->closeConnection($conn);
 
-/* Redirect */
+
 header("Location: ../view/request-status.php");
 exit;

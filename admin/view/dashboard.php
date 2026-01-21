@@ -42,7 +42,6 @@ $rejected  = $model->countRequestsByStatus("rejected");
 
     <a href="system-monitoring.php" class="menu">System Monitoring</a>
 
-    <!-- <hr class="sidebar-divider"> -->
     <a href="../controller/admin_logout.php">Logout</a>
 
 </div>

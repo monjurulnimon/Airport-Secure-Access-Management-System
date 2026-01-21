@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__ . "/../model/access-pass-model.php";
 
-/* Security check */
+
 if (
     !isset($_SESSION["isLoggedIn"]) ||
     $_SESSION["isLoggedIn"] !== true ||

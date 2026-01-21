@@ -29,7 +29,6 @@ class RequestHistoryModel {
         return $data;
     }
 
-    /* AJAX SEARCH */
     public function searchHistory($email, $keyword) {
         $db = new db_connection();
         $conn = $db->openConnection();

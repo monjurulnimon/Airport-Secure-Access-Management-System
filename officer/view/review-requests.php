@@ -20,13 +20,11 @@ $requests = $model->getPendingRequests();
 <div class="main">
     <h2>Pending Access Requests</h2>
 
-    <!-- ===== SEARCH BAR (AJAX) ===== -->
     <input type="text"
            placeholder="Search by visitor name..."
            onkeyup="searchRequests(this.value)"
            class="search-box">
 
-    <!-- ===== ERROR / SUCCESS MESSAGES ===== -->
     <?php if (isset($_GET["error"])): ?>
         <div class="error-msg">
             <?= htmlspecialchars($_GET["error"]) ?>
@@ -39,10 +37,11 @@ $requests = $model->getPendingRequests();
         </div>
     <?php endif; ?>
 
-    <!-- ===== AJAX SEARCH RESULTS ===== -->
     <div id="searchResults"></div>
 
-    <!-- ===== DEFAULT PENDING LIST ===== -->
+
+
+
     <?php if ($requests->num_rows === 0): ?>
         <p>No pending requests</p>
     <?php endif; ?>
@@ -84,7 +83,7 @@ $requests = $model->getPendingRequests();
     <?php endwhile; ?>
 </div>
 
-<!-- ===== JS FILES ===== -->
+
 <script src="../controller/officer_validation.js"></script>
 <script src="../controller/officer_search.js"></script>
 

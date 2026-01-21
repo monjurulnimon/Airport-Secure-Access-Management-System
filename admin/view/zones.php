@@ -43,13 +43,12 @@ $zones = $model->getAllZones();
                 <input type="text" name="zone_name" id="zone_name">
                 <button type="submit" name="createZone">Create Zone</button>
 
-                <p id="zoneError" style="color:red; margin-top:5px;"></p>
             </form>
 
         </div>
     </div>
 
-    <!-- EXISTING ZONES -->
+    
     <div class="panel">
         <h3>Existing Zones</h3>
         <div class="panel-body">

@@ -5,10 +5,8 @@ ini_set('display_errors', 1);
 session_start();
 require_once "../../model/db_connection.php";
 
-/* ================= IMAGE UPLOAD ================= */
 
-/* ABSOLUTE PATH — DO NOT CHANGE */
-$uploadDir = "/Applications/XAMPP/xamppfiles/htdocs/Airport-Secure-Access-Management-System/employee/profile_pictures/";
+$uploadDir = "/XAMPP/htdocs/Airport-Secure-Access-Management-System/employee/profile_pictures/";
 
 $file = $_FILES['profile_image'];
 

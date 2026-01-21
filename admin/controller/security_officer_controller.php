@@ -4,13 +4,13 @@ ini_set('display_errors', 1);
 require_once "../model/security_officer_model.php";
 
 $model = new SecurityOfficerModel();
-/* CREATE OFFICER */
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["createOfficer"])) {
 
     $email = trim($_POST["email"]);
     $pass  = trim($_POST["pass"]);
 
-    /* BASIC VALIDATION */
+
     if (empty($email) || empty($pass)) {
         header("Location: ../view/security-officers.php?error=empty");
         exit;
@@ -21,13 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["createOfficer"])) {
     exit;
     }
 
-    /* CHECK EMAIL EXISTS */
+
     if ($model->emailExists($email)) {
         header("Location: ../view/security-officers.php?error=exists");
         exit;
     }
 
-    /* PROFILE IMAGE HANDLING */
     $profile = "default.png";
 
 if (isset($_FILES["profile"]) && $_FILES["profile"]["error"] === 0) {
@@ -45,16 +44,13 @@ if (isset($_FILES["profile"]) && $_FILES["profile"]["error"] === 0) {
         die("Profile image upload failed");
     }
 }
-
-
-    /* CREATE OFFICER */
     $model->createOfficer($email, $pass, $profile);
 
     header("Location: ../view/security-officers.php?success=created");
     exit;
 }
 
-/* DELETE OFFICER */
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["deleteOfficer"])) {
 
     $id = intval($_POST["officer_id"]);

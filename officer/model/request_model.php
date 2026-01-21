@@ -41,9 +41,7 @@ class RequestModel {
         return mysqli_query($this->conn, $sql);
     }
 
-    /* =========================
-       UPDATE REQUEST
-       ========================= */
+    
 
     public function updateRequest($id, $status, $remarks) {
         $stmt = mysqli_prepare(
@@ -57,9 +55,7 @@ class RequestModel {
         return mysqli_stmt_execute($stmt);
     }
 
-    /* =========================
-       AJAX SEARCH (PENDING)
-       ========================= */
+    
 
     public function searchPendingByVisitor($keyword) {
         $keyword = "%" . $keyword . "%";

@@ -32,10 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // 🔹 LOAD ALL EMPLOYEES ON PAGE LOAD
+
     loadEmployees();
 
-    // 🔹 LIVE SEARCH
     searchInput.addEventListener("keyup", function () {
         loadEmployees(this.value);
     });

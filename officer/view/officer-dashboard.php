@@ -6,7 +6,6 @@ require_once "../model/request_model.php";
 
 $model = new RequestModel();
 
-/* Fetch data from model */
 $pendingCount = $model->countPending();
 $approvedRequests = $model->getApprovedRequests();
 ?>
@@ -19,7 +18,6 @@ $approvedRequests = $model->getApprovedRequests();
 </head>
 <body>
 
-<!-- TOP NAV -->
 <div class="top-nav">
     <a href="officer-dashboard.php">Dashboard</a>
     <a href="../controller/logout_controller.php"
@@ -35,7 +33,7 @@ $approvedRequests = $model->getApprovedRequests();
 
     <h2>Officer Dashboard</h2>
 
-    <!-- TOTAL PENDING -->
+    
     <div class="info-box">
         <strong>Total Pending Requests</strong>
         <div><?= $pendingCount ?></div>
@@ -43,7 +41,7 @@ $approvedRequests = $model->getApprovedRequests();
 
     <br>
 
-    <!-- APPROVED REQUESTS -->
+    
     <h3>Accepted Requests</h3>
 
     <table border="1" cellpadding="10">
@@ -72,7 +70,7 @@ $approvedRequests = $model->getApprovedRequests();
 
     <br>
 
-    <!-- ACTION BUTTON -->
+    
     <a href="review-requests.php">
         <button>View Pending Requests</button>
     </a>

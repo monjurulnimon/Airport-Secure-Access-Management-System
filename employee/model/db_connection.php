@@ -2,7 +2,7 @@
 
 class db_connection {
 
-    /* ================= DATABASE CONNECTION ================= */
+   
 
     function openConnection() {
         $db_host = "localhost";
@@ -19,7 +19,6 @@ class db_connection {
         return $connection;
     }
 
-    /* ================= VISITOR REGISTRATION ================= */
 
     public function registerVisitor(
         $conn,
@@ -77,7 +76,6 @@ class db_connection {
 }
 
 
-    /* ================= VISITOR LOGIN ================= */
 
     function loginVisitor($connection, $tableName, $email, $password) {
 
@@ -89,7 +87,7 @@ class db_connection {
         return $result;
     }
 
-    /* ================= CLOSE CONNECTION ================= */
+
 
     function closeConnection($connection) {
         $connection->close();

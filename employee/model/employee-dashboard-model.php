@@ -3,7 +3,7 @@ require_once __DIR__ . "/db_connection.php";
 
 class EmployeeDashboardModel {
 
-    /* ================= PROFILE DATA ================= */
+
 
     public function getEmployeeProfileByEmail($email) {
         $db = new db_connection();
@@ -26,7 +26,7 @@ class EmployeeDashboardModel {
         return $data;
     }
 
-    /* ================= REQUEST COUNTS ================= */
+
 
     public function getRequestCountsByEmail($email) {
         $db = new db_connection();

@@ -1,18 +1,17 @@
 <?php
 session_start();
 
-/* Session protection */
 if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "employee") {
     header("Location: ../../auth/login.php");
     exit;
 }
 
-/* Load model */
+
 require_once "../model/zone_model.php";
 
 $zoneModel = new ZoneModel();
 
-/* Fetch data */
+
 $zones = $zoneModel->getActiveZones();
 $rules = $zoneModel->getAllRules();
 ?>
@@ -24,7 +23,6 @@ $rules = $zoneModel->getAllRules();
 </head>
 <body>
 
-<!-- ===== TOP NAV ===== -->
 <div class="top-nav">
     <a href="employee-dashboard.php">Dashboard</a>
     <a href="request-access.php">Request Access</a>
@@ -34,7 +32,6 @@ $rules = $zoneModel->getAllRules();
     <a href="auth/logout.php">Logout</a>
 </div>
 
-<!-- ===== MAIN CONTENT ===== -->
 <div class="main">
     <div class="panel">
         <h3>Temporary Access Request</h3>
@@ -56,19 +53,19 @@ $rules = $zoneModel->getAllRules();
                     <?php } ?>
                 </select>
 
-                <!-- PURPOSE -->
+                
                 <label>Visit Purpose</label>
                 <textarea name="purpose" rows="3" required></textarea>
 
-                <!-- DATE -->
+                
                 <label>Date of Visit</label>
                 <input type="date" name="visit_date" required>
 
-                <!-- DURATION -->
+                
                 <label>Duration (hours)</label>
                 <input type="number" name="duration" min="1" required>
 
-                <!-- RULES -->
+                
                 <div class="rules-section">
                     <h4>Airport Access Rules</h4>
                     <ul>
@@ -89,12 +86,12 @@ $rules = $zoneModel->getAllRules();
                     </div>
                 </div>
 
-                <!-- SUBMIT -->
+                
                 <button type="submit">Submit</button>
 
             </div>
         </form>
-        <!-- ===== FORM END ===== -->
+        
 
     </div>
 </div>
